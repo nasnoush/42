@@ -6,10 +6,10 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:58:08 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/02 10:23:44 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:49:30 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')

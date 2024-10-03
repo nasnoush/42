@@ -6,13 +6,13 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:21:05 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/02 10:31:58 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:50:04 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 int	ft_isdigit(int c)
 {
-	if (!(str[i] >= '0' && str[i] <= '9'))
+	if (!(c >= '0' && c <= '9'))
 	{
 		return (0);
 	}

@@ -6,10 +6,10 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:29:20 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/02 14:14:16 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:50:00 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t	i;

@@ -3,25 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:14:26 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/01 12:28:26 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:50:05 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-int	ft_isascii(char *str)
+#include "libft.h"
+int	ft_isascii(int c)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	if (!(c >= 0 && c <= 127))
 	{
-		if (!(str[i] >= 0 && str[i] <= 127))
-		{
-			return (0);
-		}
-		i++;
+		return (0);
 	}
 	return (1);
 }

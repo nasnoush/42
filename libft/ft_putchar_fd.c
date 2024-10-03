@@ -6,10 +6,10 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 09:51:54 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/02 10:17:10 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:49:52 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 void	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);

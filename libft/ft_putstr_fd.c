@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/01 11:49:18 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/03 12:50:08 by nadahman         ###   ########.fr       */
+/*   Created: 2024/10/03 12:59:30 by nadahman          #+#    #+#             */
+/*   Updated: 2024/10/03 12:59:30 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-int	ft_isalnum(int c)
-{
-	if (!((c >= 'a' && c <= 'z')
-			|| (c >= 'A' && c <= 'Z')
-			|| (c >= '0' && c <= '9')))
-	{
-		return (0);
-	}
-	return (1);
-}
 
-//#include <stdio.h>
-//int main(void)
-//{
-//	printf("%d", ft_isalnum("//lut458"));
-//	return (0);
-//}
+void ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while(s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+}

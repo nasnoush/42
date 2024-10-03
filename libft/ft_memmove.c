@@ -6,10 +6,10 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:54:58 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/02 14:19:40 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:49:57 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 void *ft_memmove(void *dest, const void *src, size_t n)
 {
 	

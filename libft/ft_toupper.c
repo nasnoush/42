@@ -6,10 +6,10 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 10:20:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/02 10:23:09 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:54:53 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')

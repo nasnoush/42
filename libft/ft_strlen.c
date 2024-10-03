@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:28:54 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/01 13:34:40 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:49:35 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 int	ft_strlen(char *str)
 {
 	int	i;
@@ -20,4 +20,4 @@ int	ft_strlen(char *str)
 		i++;
 	}
 	return (i);
-}
+}	

@@ -6,10 +6,10 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:22:32 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/02 10:58:11 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:50:07 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include "libft.h"
 int	ft_isalpha(int c)
 {
 	if (!((c >= 'a' && c <= 'z')
