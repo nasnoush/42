@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:37:06 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/03 12:49:48 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/06 13:59:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
 char	*ft_strdup(const char *s1)
 {
 	int		i;
