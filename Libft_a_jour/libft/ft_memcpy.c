@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:43:37 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:44:07 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/08 11:48:50 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	d = (unsigned char *)dest;
 	i = 0;
+	if (d == NULL && s == NULL)
+	{
+		return (NULL);
+	}
 	while (i < n)
 	{
 		d[i] = s[i];
