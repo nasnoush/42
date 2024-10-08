@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 10:38:43 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/08 10:52:17 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/08 16:53:59 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	calcul(const char *str, int *i, int s)
+static int	calcul(const char *str, int *i, int s)
 {
 	int	r;
 

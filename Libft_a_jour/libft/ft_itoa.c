@@ -12,50 +12,66 @@
 
 #include "libft.h"
 
+static size_t   count_size(long nb)
+{
+    size_t  size;
+
+    size = 0;
+    if (nb <= 0)
+    {
+        size = 1;
+        nb = -nb;
+    }
+    while (nb != 0)
+    {
+        nb = nb / 10;
+        size++;
+    }
+    return (size);
+}
+
 char    *ft_itoa(int n)
 {
-    int len;
-    int negative;
-    int tmp;
-    
-    len = 0;
-    negative = 0;
-    tmp = n;
-    if (n == 0)
-    {
-        return("0");
-    }
-    if (n < 0)
-    {
-        negative = 1;
-        tmp = -n;
-        len++;
-    }
-    while(tmp != 0)
-    {
-        tmp = tmp / 10;
-        len++;
-    }
-    char *str = (char *)malloc(len + 1);
-    
+    size_t  size;
+    long    nb;
+    char    *str;
+
+    nb = (long) n;
+    size = count_size(nb);
+    str = (char *) malloc(sizeof(char) * (size + 1));
     if (str == NULL)
     {
         return (NULL);
     }
-    str[len] = '\0';
-    if (n < 0)
-    {
-        n = -n;
-    }
-    while(len--)
-    {
-        str[len] = (n % 10) + '0';
-        n = n / 10;
-    }
-    if (negative)
+    str[size] = '\0';
+    if (nb < 0)
     {
         str[0] = '-';
+        nb = -nb;
+    }
+    if (nb == 0)
+    {
+        str[0] = '0';
+    }
+    while(nb != 0)
+    {
+        str[--size] = nb % 10 + '0';
+        nb = nb / 10;
     }
     return (str);
 }
+/*
+int main()
+{
+    char    *str;
+    int     num;
+
+    num= -8753;
+    str = ft_itoa(num);
+    printf("%s", str);
+    free(str);
+    return (0);
+}
+*/
+    
 

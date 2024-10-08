@@ -13,7 +13,7 @@
 NAME	= libft.a
 CFLAGS	= -Wall -Wextra -Werror
 CC		= gcc
-OBJ 	= $(SRCS:.c=.o)
+OBJS 	= $(SRCS:.c=.o)
 
 #FICHIERS SOURCES
 SRCS	= ft_atoi.c \
@@ -55,8 +55,8 @@ SRCS	= ft_atoi.c \
 all: $(NAME)
 
 #COMPILATION DE LA BIBLIOTHEQUE
-$(NAME): $(OBJ)
-	ar rcs $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	ar rcs $(NAME) $(OBJS)
 
 #COMPILATION DES FICHIERS .c EN .o
 %.o: %.c 
