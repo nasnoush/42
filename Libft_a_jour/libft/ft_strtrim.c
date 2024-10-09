@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:50:05 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/08 14:10:32 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:10:39 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	is_in(char c, char const *set)
 		{
 			return (1);
 		}
-		set++;
+		i++;
 	}
 	return (0);
 }
@@ -38,7 +38,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	end = ft_strlen(s1);
 	if (s1 == NULL)
 		return (NULL);
-	while (s1[start] && is_in(start, set))
+	while (s1[start] && is_in(s1[start], set))
 	{
 		start++;
 	}
@@ -49,7 +49,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	mem = (char *)malloc(end - start + 1);
 	if (mem == NULL)
 		return (NULL);
-	ft_strncpy(mem, s1 + start, end - start);
+	ft_strlcpy(mem, s1 + start, end - start + 1);
 	mem[end - start] = '\0';
 	return (mem);
 }

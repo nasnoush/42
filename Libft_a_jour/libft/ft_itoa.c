@@ -6,59 +6,57 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 10:11:31 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 10:11:31 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:12:26 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t   count_size(long nb)
+static size_t	count_size(long nb)
 {
-    size_t  size;
+	size_t	size;
 
-    size = 0;
-    if (nb <= 0)
-    {
-        size = 1;
-        nb = -nb;
-    }
-    while (nb != 0)
-    {
-        nb = nb / 10;
-        size++;
-    }
-    return (size);
+	size = 0;
+	if (nb <= 0)
+	{
+		size = 1;
+		nb = -nb;
+	}
+	while (nb != 0)
+	{
+		nb = nb / 10;
+		size++;
+	}
+	return (size);
 }
 
-char    *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-    size_t  size;
-    long    nb;
-    char    *str;
+	size_t	size;
+	long	nb;
+	char	*str;
 
-    nb = (long) n;
-    size = count_size(nb);
-    str = (char *) malloc(sizeof(char) * (size + 1));
-    if (str == NULL)
-    {
-        return (NULL);
-    }
-    str[size] = '\0';
-    if (nb < 0)
-    {
-        str[0] = '-';
-        nb = -nb;
-    }
-    if (nb == 0)
-    {
-        str[0] = '0';
-    }
-    while(nb != 0)
-    {
-        str[--size] = nb % 10 + '0';
-        nb = nb / 10;
-    }
-    return (str);
+	nb = (long) n;
+	size = count_size(nb);
+	str = (char *) malloc(sizeof(char) * (size + 1));
+	if (str == NULL)
+		return (NULL);
+	str[size] = '\0';
+	if (nb < 0)
+	{
+		str[0] = '-';
+		nb = -nb;
+	}
+	if (nb == 0)
+	{
+		str[0] = '0';
+	}
+	while (nb != 0)
+	{
+		str[--size] = nb % 10 + '0';
+		nb = nb / 10;
+	}
+	return (str);
 }
 /*
 int main()
@@ -73,5 +71,3 @@ int main()
     return (0);
 }
 */
-    
-
