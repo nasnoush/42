@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:29:20 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:30:58 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:33:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,17 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
+
+/*
+int main(void)
+{
+    char str1[] = "Hello";
+    char str2[] = "Hellp";
+    int result;
+
+    result = ft_memcmp(str1, str2, 5);
+    printf("ft_memcmp result: %d\n", result);
+
+    return (0);
+}
+*/

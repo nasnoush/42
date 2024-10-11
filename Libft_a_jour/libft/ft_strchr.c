@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:22:35 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 11:15:51 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:36:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -30,3 +30,17 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return (NULL);
 }
+/*
+int main(void)
+{
+    char *result;
+
+    result = ft_strchr("Hello, World!", 'W');
+    printf("%s\n", result);
+
+    result = ft_strchr("Hello, World!", 'z');
+    printf("%s\n", result ? result : "Not found");
+
+    return (0);
+}
+*/

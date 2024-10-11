@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 12:14:26 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:30:38 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:31:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,10 @@ int	ft_isascii(int c)
 	}
 	return (1);
 }
+/*
+int main(void)
+{
+	char *str = "bajaud 94456";
+	printf("%i", ft_isascii(str));
+	return (0);
+}*/

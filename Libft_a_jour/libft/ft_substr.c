@@ -40,3 +40,18 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	str[i] = '\0';
 	return (str);
 }
+/*
+int main(void)
+{
+    char *s = "Bonjour, le monde!";
+    unsigned int start = 8;
+    size_t len = 6;
+    char *result;
+
+    result = ft_substr(s, start, len);
+    printf("Sous-chaîne extraite : '%s'\n", result);
+
+    free(result);
+    return (0);
+}
+*/

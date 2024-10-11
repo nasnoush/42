@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:28:54 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:46:40 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:38:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,11 @@ int	ft_strlen(const char *str)
 	}
 	return (i);
 }	
+/*
+int main(void)
+{
+	char *str = "Salut";
+	printf("%d", ft_strlen(str));
+	return (0);
+}
+*/

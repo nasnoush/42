@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:54:58 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/08 13:32:35 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:34:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,19 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+
+/*
+int main(void)
+{
+    char src[] = "Overlap";
+    char dest[20];
+
+    ft_memmove(dest, src, 8);
+    printf("ft_memmove result: %s\n", dest);
+
+    ft_memmove(src + 3, src, 5);
+    printf("ft_memmove overlapping result: %s\n", src);
+
+    return (0);
+}
+*/

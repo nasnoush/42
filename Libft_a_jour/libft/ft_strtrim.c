@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:50:05 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/09 11:10:39 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:39:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,17 @@ char	*ft_strtrim(char const *s1, char const *set)
 	mem[end - start] = '\0';
 	return (mem);
 }
+/*
+int main(void)
+{
+    char *s1 = "   Bonjour, le monde!   ";
+    char *set = " ";
+    char *result;
+
+    result = ft_strtrim(s1, set);
+    printf("Chaîne après trim : '%s'\n", result);
+
+    free(result);
+    return (0);
+}
+*/

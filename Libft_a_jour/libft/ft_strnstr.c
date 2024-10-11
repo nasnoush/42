@@ -32,3 +32,18 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (NULL);
 }
+/*
+#include <stdio.h>
+
+int main(void)
+{
+    char *haystack = "Bonjour tout le monde!";
+    char *needle = "tout";
+    size_t len = 20;
+
+    char *result = ft_strnstr(haystack, needle, len);
+    printf("%s\n", result ? result : "Sous-chaîne non trouvée");
+
+    return (0);
+}
+*/

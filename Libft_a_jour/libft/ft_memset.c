@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:41:32 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:31:17 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:34:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,15 @@ void	*ft_memset(void *s, int c, size_t n)
 	}
 	return (s);
 }
+
+/*
+int main(void)
+{
+    char str[20] = "Hello, World!";
+
+    ft_memset(str, 'A', 5);
+    printf("ft_memset result: %s\n", str);
+
+    return (0);
+}
+*/

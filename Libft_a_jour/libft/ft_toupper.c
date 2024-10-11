@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 11:38:28 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/09 11:38:50 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:40:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,15 @@ int	ft_toupper(int c)
 	}
 	return (c);
 }
+/*
+#include <stdio.h>
+
+int main(void)
+{
+    char c = 'A';
+    
+    printf("'%c'\n", c, ft_toupper(c));
+    
+    return (0);
+}
+*/

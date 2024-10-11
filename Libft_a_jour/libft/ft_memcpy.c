@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 13:43:37 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/08 11:48:50 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:34:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,3 +31,16 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
+
+/*
+int main(void)
+{
+    char src[] = "Hello, World!";
+    char dest[20];
+
+    ft_memcpy(dest, src, 13);
+    printf("ft_memcpy result: %s\n", dest);
+
+    return (0);
+}
+*/

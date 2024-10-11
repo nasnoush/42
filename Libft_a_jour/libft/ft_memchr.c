@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:39:08 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/08 11:38:38 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:33:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,18 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	return (NULL);
 }
+
+/*
+int main(void)
+{
+    char str[] = "Hello World";
+    char *result = (char *)ft_memchr(str, 'W', 11);
+
+    if (result)
+        printf("Caractère trouvé : %s\n", result);
+    else
+        printf("Caractère non trouvé\n");
+
+    return (0);
+}
+*/

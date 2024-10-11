@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 10:35:26 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:30:23 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:29:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,18 @@ void	ft_bzero(void *s, size_t n)
 		pos++;
 	}
 }
+
+/*
+#include <stdio.h>
+
+int main(void)
+{
+    char str[6] = "Hello";
+
+    ft_bzero(str, 3);
+
+    printf("Chaîne après ft_bzero : %s\n", str);
+
+    return (0);
+}
+*/

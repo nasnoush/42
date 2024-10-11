@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:21:05 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:30:43 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:31:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,12 @@ int	ft_isdigit(int c)
 	}
 	return (1);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	char *str = "salut 74200";
+	printf("%i", ft_isdigit(str));
+	return (0);
+}*/

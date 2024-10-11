@@ -31,3 +31,15 @@ char	*ft_strrchr(const char *s, int c)
 	}
 	return (NULL);
 }
+/*
+int main(void)
+{
+    char *str = "Hello World!";
+    char ch = 'o';
+
+    char *result = ft_strrchr(str, ch);
+    printf("Dernière occurrence de '%c': %s\n", ch, result ? result : "Non trouvé");
+
+    return (0);
+}
+*/

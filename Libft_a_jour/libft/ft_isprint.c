@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:23:19 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:30:47 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:32:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,3 +20,12 @@ int	ft_isprint(int c)
 	}
 	return (1);
 }
+
+/*
+#include <stdio.h>
+int main(void)
+{
+	char *str = "Bonjour";
+	printf("%i", ft_isprint(str));
+	return (0);
+}*/

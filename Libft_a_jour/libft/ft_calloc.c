@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 11:12:08 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/07 13:30:27 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/11 09:30:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,3 +26,18 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(ptr, total_size);
 	return (ptr);
 }
+
+/*
+int main(void)
+{
+    int *arr = (int *)ft_calloc(5, sizeof(int));
+
+    if (!arr)
+        return (1);
+
+    printf("Premier élément du tableau après ft_calloc : %d\n", arr[0]);
+
+    free(arr);
+    return (0);
+}
+*/
