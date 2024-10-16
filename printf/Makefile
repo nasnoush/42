@@ -6,7 +6,7 @@
 #    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/15 11:01:56 by nadahman          #+#    #+#              #
-#    Updated: 2024/10/15 11:03:08 by nadahman         ###   ########.fr        #
+#    Updated: 2024/10/16 13:42:41 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC		= gcc
 OBJ 	= $(SRCS:.c=.o)
 
 #FICHIERS SOURCES
-SRCS	=
+SRCS	= 	ft_printf.c \
+			fonctions.c \
+			fonctions2.c
 
 #REGLES
 all: $(NAME)
