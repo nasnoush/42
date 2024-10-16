@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 10:02:22 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/16 13:41:44 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:10:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (nbr_char);
 }
-/*int main() 
+int main() 
 {
 	ft_printf("%p", (void *)-14523);
     return (0);
 }
-*/

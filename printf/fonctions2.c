@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fonctions2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 13:43:19 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/16 13:55:14 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/16 17:10:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_putnbr(int nb)
 	count = 0;
 	if (nb == -2147483648)
 	{
-		ft_putstr("-2147483648");
+		count += ft_putstr("-2147483648");
 		return (0);
 	}
 	if (nb < 0)
@@ -82,7 +82,7 @@ int	ft_putpointer(void *ptr)
 
 	if (ptr == NULL)
 	{
-		ft_putstr("0x0");
+		count += ft_putstr("0x0");
 		return (0);
 	}
 	count = 0;

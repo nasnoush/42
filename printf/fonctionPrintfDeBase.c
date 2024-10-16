@@ -24,7 +24,7 @@ int	ft_printf(const char *format, ...)
 			else if (format[i] == 'i')
 				nbr_char += ft_putnbr(va_arg(args, int));
 			else if (format[i] == 'u')
-				nbr_char += ft_putnbr(va_arg(args, unsigned int));
+				nbr_char += ft_putnbr_unsigned(va_arg(args, unsigned int));
 			else if (format[i] == 'x')
 				nbr_char += ft_putnbr_hex(va_arg(args, unsigned int), 'x');
 			else if (format[i] == 'X')
