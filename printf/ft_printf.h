@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdint.h>
+# include <stdlib.h>
+# include <string.h>
+# include <limits.h>
 
 int	ft_printf(const char *format, ...);
 int	ft_putchar(char c);

@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "ft_printf.h"
 
 int	found_conv(char conv, va_list args)
@@ -28,9 +27,9 @@ int	found_conv(char conv, va_list args)
 	else if (conv == 'u')
 		return (ft_putnbr_unsigned(va_arg(args, unsigned int)));
 	else if (conv == 'x')
-		return (ft_putnbr_hex(va_arg(args, unsigned long), 'x'));
+		return (ft_putnbr_hex(va_arg(args, unsigned int), 'x'));
 	else if (conv == 'X')
-		return (ft_putnbr_hex(va_arg(args, unsigned long), 'X'));
+		return (ft_putnbr_hex(va_arg(args, unsigned int), 'X'));
 	else if (conv == '%')
 		return (ft_putchar('%'));
 	return (0);
@@ -61,8 +60,8 @@ int	ft_printf(const char *format, ...)
 	va_end(args);
 	return (nbr_char);
 }
-int main() 
+/*int main() 
 {
 	ft_printf("%p", "ok");
     return (0);
-}
+}*/
