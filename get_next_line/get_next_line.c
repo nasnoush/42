@@ -6,63 +6,91 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:32:53 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/23 14:07:01 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/24 13:57:33 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "get_next_line.h"
 
-/*size_t read(int fd, void *buf, size_t count)
+char	*get_next_line(int fd)
 {
-	
-}*/
-
-char	*get_next_line(char *str)
-{
-	char	buffer[32];
-	int		i;
-	int		j;
-	char	*new_str;
+	static char	*stock;
+	char		buffer[BUFFER_SIZE + 1];
+	char		*line;
+	ssize_t		bytes_lu;
+	int			i;
+	int			j;
+	char		*temp;
+	int			start_index;
 
 	i = 0;
-	j = 0;
-	new_str = (char *)malloc(strlen(str) + 1);
-	if (new_str == NULL)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 	{
 		return (NULL);
 	}
-	while (str[i] != '\0')
+	while ((bytes_lu = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
-		if (str[i] != '\n')
-		{
-			new_str[j] = str[i];
-			i++;
-			j++;
-			if (str[i] == '\n')
-			{
-				break ;
-			}
-		}
-		new_str[j] = str[i];
-		j++;
+		buffer[bytes_lu] = '\0';
+		stock = ft_strjoin(stock, buffer);
+		if (found_line(stock))
+			break ;
+	}
+	if (found_line(stock))
+	{
+		j = 0;
+		while (stock[i] != '\0' && stock[i] != '\n')
 		i++;
+		line = (char *)malloc (i + 2);
+		{
+			if (line == NULL)
+				return (NULL);
+		}
+		while (j < 1)
+		{
+			line[j] = stock[j];
+			j++; 
+		}
+		line[j] = '\n';
+		line[j + 1] = '\0'; 
+
+		start_index = i;
+		if (stock[i] == '\n')
+		{
+			start_index = start_index + 1;
+		}
+		temp = ft_strdup(&stock[start_index]);
+		free(stock);
+		stock = temp;
+		return (line);
 	}
-	new_str[j] = '\0';
-	if (j == 0)
+	if (bytes_lu == 0)
 	{
-		free(new_str);
+		free(stock);
+		if (stock == NULL)
 		return (NULL);
 	}
-	return (new_str);
+	return (NULL);
 }
 
-int main()
+/*#include <stdio.h>
+#include <fcntl.h>
+
+int	main(void)
 {
-	int fd = 1;
-	char *str = "salut\ncomment\nva";
-	printf("%s", get_next_line(str));
-	free(str);
+	int		fd;
+	char	*line;
+
+    fd = open("test.txt", O_RDONLY);
+	if (fd < 0)
+	{
+		perror("Error opening file");
+		return (1);
+	}
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
 	return (0);
-}
+}*/
