@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:18:13 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/24 13:35:08 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:03:55 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 32
+#  define BUFFER_SIZE 32
 # endif
 
 # include <unistd.h>
@@ -25,6 +25,6 @@ size_t	ft_strlen(char *str);
 int		found_line(char *str);
 char	*ft_strjoin(char *s1, char *s2);
 char	*get_next_line(int fd);
-char	*ft_strdup(char *str);
+char	*ft_strdup(const char *str);
 
 #endif

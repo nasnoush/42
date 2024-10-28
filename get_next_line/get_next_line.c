@@ -6,70 +6,69 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:32:53 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/24 13:57:33 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:50:22 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
+static char	*ft_line(char *stock)
+{
+	char	*line;
+	int		i;
+	char	*temp;
+
+	i = 0;
+	if (stock == NULL)
+		return (NULL);
+	while (stock[i] != '\0' && stock[i] != '\n')
+		i++;
+	line = (char *)malloc (i + 2);
+	if (line == NULL)
+	{
+		free(stock);
+		return (NULL);
+	}
+	strlcpy(line, stock, i + 2);
+	if (stock[i] == '\n')
+		temp = ft_strdup(stock + i + 1);
+	else
+		temp = ft_strdup(stock + i);
+	free(stock);
+	stock = temp;
+	return (line);
+}
+
 char	*get_next_line(int fd)
 {
-	static char	*stock;
+	static char	*stock = NULL;
 	char		buffer[BUFFER_SIZE + 1];
 	char		*line;
 	ssize_t		bytes_lu;
-	int			i;
-	int			j;
-	char		*temp;
-	int			start_index;
+	char		*new_stock;
 
-	i = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
-	{
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	}
 	while ((bytes_lu = read(fd, buffer, BUFFER_SIZE)) > 0)
 	{
 		buffer[bytes_lu] = '\0';
-		stock = ft_strjoin(stock, buffer);
+		new_stock = ft_strjoin(stock, buffer);
+		if (new_stock == NULL)
+		{
+			free(stock);
+			return (NULL);
+		}
+		free(stock);
+		stock = new_stock;
 		if (found_line(stock))
 			break ;
 	}
-	if (found_line(stock))
-	{
-		j = 0;
-		while (stock[i] != '\0' && stock[i] != '\n')
-		i++;
-		line = (char *)malloc (i + 2);
-		{
-			if (line == NULL)
-				return (NULL);
-		}
-		while (j < 1)
-		{
-			line[j] = stock[j];
-			j++; 
-		}
-		line[j] = '\n';
-		line[j + 1] = '\0'; 
-
-		start_index = i;
-		if (stock[i] == '\n')
-		{
-			start_index = start_index + 1;
-		}
-		temp = ft_strdup(&stock[start_index]);
-		free(stock);
-		stock = temp;
-		return (line);
-	}
-	if (bytes_lu == 0)
-	{
-		free(stock);
-		if (stock == NULL)
+	if (bytes_lu == 0 && stock == NULL)
 		return (NULL);
-	}
-	return (NULL);
+	line = ft_line(stock);
+	if (line == NULL)
+		return (NULL);
+	return (line);
 }
 
 /*#include <stdio.h>
