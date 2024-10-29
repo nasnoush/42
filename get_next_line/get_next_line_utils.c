@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:05:28 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/28 13:52:19 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/29 13:58:34 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (ft_strdup(s1));
 	concat = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (concat == NULL)
+	{
+		free(s1);
 		return (NULL);
+	}
 	while (s1[i])
 	{
 		concat[i] = s1[i];
@@ -68,7 +71,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	concat[i + j] = '\0';
-	free(s1);
 	return (concat);
 }
 
@@ -78,15 +80,11 @@ char	*ft_strdup(const char *str)
 	char	*new;
 
 	if (str == NULL)
-	{
 		return (NULL);
-	}
 	i = 0;
 	new = (char *)malloc((ft_strlen((char *)str)) + 1);
 	if (new == NULL)
-	{
 		return (NULL);
-	}
 	while (str[i])
 	{
 		new[i] = str[i];

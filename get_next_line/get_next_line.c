@@ -6,13 +6,13 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:32:53 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/28 13:50:22 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/29 14:13:13 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_line(char *stock)
+static char	*ft_line(char **stock)
 {
 	char	*line;
 	int		i;
@@ -21,21 +21,27 @@ static char	*ft_line(char *stock)
 	i = 0;
 	if (stock == NULL)
 		return (NULL);
-	while (stock[i] != '\0' && stock[i] != '\n')
+	while ((*stock[i]) != '\0' && (*stock[i]) != '\n')
 		i++;
 	line = (char *)malloc (i + 2);
 	if (line == NULL)
 	{
-		free(stock);
+		free(*stock);
 		return (NULL);
 	}
-	strlcpy(line, stock, i + 2);
-	if (stock[i] == '\n')
-		temp = ft_strdup(stock + i + 1);
+	strlcpy(line, *stock, i + 2);
+	if (*stock[i] == '\n')
+		temp = ft_strdup(*stock + i + 1);
 	else
-		temp = ft_strdup(stock + i);
-	free(stock);
-	stock = temp;
+		temp = ft_strdup(*stock + i);
+	if (temp == NULL)
+	{
+		free(line);
+		free(*stock);
+		return (NULL);
+	}
+	/*free(*stock);*/
+	*stock = temp;
 	return (line);
 }
 
@@ -65,9 +71,18 @@ char	*get_next_line(int fd)
 	}
 	if (bytes_lu == 0 && stock == NULL)
 		return (NULL);
-	line = ft_line(stock);
+	line = ft_line(&stock);
 	if (line == NULL)
+	{
+		free(stock);
+		stock = NULL;
 		return (NULL);
+	}
+	if (bytes_lu == 0 && *stock == '\0')
+	{
+		free(stock);
+		stock = NULL;
+	}
 	return (line);
 }
 
@@ -92,4 +107,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}*/
+}/*
