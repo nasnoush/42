@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:32:53 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/29 14:13:13 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:48:09 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,19 @@ static char	*ft_line(char **stock)
 	char	*temp;
 
 	i = 0;
-	if (stock == NULL)
+	if (*stock == NULL)
 		return (NULL);
-	while ((*stock[i]) != '\0' && (*stock[i]) != '\n')
+	while ((*stock)[i] != '\0' && (*stock)[i] != '\n')
 		i++;
 	line = (char *)malloc (i + 2);
 	if (line == NULL)
 	{
 		free(*stock);
+		*stock = NULL;
 		return (NULL);
 	}
 	strlcpy(line, *stock, i + 2);
-	if (*stock[i] == '\n')
+	if ((*stock)[i] == '\n')
 		temp = ft_strdup(*stock + i + 1);
 	else
 		temp = ft_strdup(*stock + i);
@@ -38,9 +39,10 @@ static char	*ft_line(char **stock)
 	{
 		free(line);
 		free(*stock);
+		*stock = NULL;
 		return (NULL);
 	}
-	/*free(*stock);*/
+	free(*stock);
 	*stock = temp;
 	return (line);
 }
@@ -55,30 +57,30 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	while ((bytes_lu = read(fd, buffer, BUFFER_SIZE)) > 0)
+	bytes_lu = read(fd, buffer, BUFFER_SIZE);
+	while (bytes_lu > 0)
 	{
 		buffer[bytes_lu] = '\0';
 		new_stock = ft_strjoin(stock, buffer);
 		if (new_stock == NULL)
 		{
 			free(stock);
+			stock = NULL;
 			return (NULL);
 		}
-		free(stock);
 		stock = new_stock;
-		if (found_line(stock))
+		if (found_line(stock) != -1)
 			break ;
+		bytes_lu = read(fd, buffer, BUFFER_SIZE);
 	}
-	if (bytes_lu == 0 && stock == NULL)
-		return (NULL);
-	line = ft_line(&stock);
-	if (line == NULL)
+	if (bytes_lu < 0 || (bytes_lu == 0 && (stock == NULL || *stock == '\0')))
 	{
 		free(stock);
 		stock = NULL;
 		return (NULL);
 	}
-	if (bytes_lu == 0 && *stock == '\0')
+	line = ft_line(&stock);
+	if (line == NULL)
 	{
 		free(stock);
 		stock = NULL;
@@ -107,4 +109,4 @@ int	main(void)
 	}
 	close(fd);
 	return (0);
-}/*
+}*/

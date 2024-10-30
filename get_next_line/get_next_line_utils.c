@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:05:28 by nadahman          #+#    #+#             */
-/*   Updated: 2024/10/29 13:58:34 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/10/30 13:35:30 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,15 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	if (s1 == NULL && s2 == NULL)
-		return (NULL);
+	/*if (s1 == NULL && s2 == NULL)
+		return (NULL);*/
 	if (s1 == NULL)
-		return (ft_strdup(s2));
+		s1 = ft_strdup("");
 	if (s2 == NULL)
-		return (ft_strdup(s1));
+	{
+		free(s1);
+		return (NULL);
+	}
 	concat = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
 	if (concat == NULL)
 	{
@@ -71,6 +74,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		j++;
 	}
 	concat[i + j] = '\0';
+	free(s1);
 	return (concat);
 }
 
