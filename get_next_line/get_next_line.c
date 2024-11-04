@@ -6,11 +6,27 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 10:32:53 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/04 14:12:54 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:26:10 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+char	*ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+
+	i = 0;
+	if (dstsize == 0)
+		return (ft_strdup(src));
+	while (src[i] != '\0' && i < dstsize - 1)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
+}
 
 char	*ft_free_stock(char *stock)
 {
@@ -33,7 +49,7 @@ static char	*ft_extract_line(char **stock)
 	line = (char *)malloc (i + 2);
 	if (line == NULL)
 		return (NULL);
-	strlcpy(line, *stock, i + 2);
+	ft_strlcpy(line, *stock, i + 2);
 	if ((*stock)[i] == '\n')
 		temp = ft_strdup(*stock + i + 1);
 	else
