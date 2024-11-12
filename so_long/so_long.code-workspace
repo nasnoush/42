@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../GNL"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"ios": "c"
+		}
+	}
+}
