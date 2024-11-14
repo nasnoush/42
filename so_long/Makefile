@@ -4,12 +4,16 @@ CC      = gcc -I./minilibx -I./GNL
 MLX     = -L./minilibx -lmlx -framework OpenGL -framework AppKit -lz
 OBJ     = $(SRCS:.c=.o)
 
-SRCS    = main.c GNL/get_next_line.c GNL/get_next_line_utils.c so_long.c
+SRCS    = main.c GNL/get_next_line.c GNL/get_next_line_utils.c so_long.c player.c
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
+
+leaks : $(NAME)
+	@echo "Test de leaks.."
+	@leaks --atExit -- ./$<
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
