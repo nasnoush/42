@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:04:58 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/14 18:14:12 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:11:23 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,10 @@ int main (int argc, char **argv)
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, (largeur - 1) * 32, longueur * 32, "So Long");
 	assets = load_assets(mlx);
+	mlx_key_hook(window, keyboard,  assets);
+	/*actualisation_map(assets, mlx, window);*/
 	place_assets(assets, map, mlx, window);
 	aff_perso(assets, mlx, window, map);
-	mlx_key_hook(window, depl_haut, assets);
-	actualisation_map(assets, mlx, window);
-	/*position_perso(assets, mlx, window, map);
-	actualisation_deplacement(window, depl_haut, assets);*/
 	mlx_loop(mlx);
 	return (0);
 }

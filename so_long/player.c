@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 13:54:03 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/14 15:53:39 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:03:02 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	aff_perso(t_assets *assets, void *mlx, void *window, char **map)
 		{
 			if (map[i][j] == 'P')
 			{
-				x = i;
-				y = j;
+				x = j;
+				y = i;
 				break ;
 			}
 			j++;
 		}
 		i++;
 	}
-	mlx_put_image_to_window(mlx, window, assets->sol1, y * 32, x * 32);
-	mlx_put_image_to_window(mlx, window, assets->perso, y * 32, x * 32);
+	mlx_put_image_to_window(mlx, window, assets->sol1, x * 32, y * 32);
+	mlx_put_image_to_window(mlx, window, assets->perso, x * 32, y * 32);
 }

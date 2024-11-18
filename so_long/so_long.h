@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:07:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/14 18:24:40 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/18 13:29:00 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,6 @@ typedef struct s_assets
 	void	*collect;
 	void	*perso;
 	void	*exit;
-	void	*sol1_image;
-	void	*sol2_image;
-	void	*mur_image;
-	void	*collect_image;
-	void	*perso_image;
-	void	*exit_image;
 	int		longueur;
 	int		largeur;
 	int		win_long;
@@ -44,6 +38,10 @@ typedef struct s_assets
 	char	**map;
 	int		pos_y;
 	int		pos_x;
+	void	*mlx;
+	void	*window;
+	int		new_x;
+	int		new_y;
 }t_assets;
 
 void		*def_assets_to_char(char i, t_assets *assets);
@@ -56,5 +54,6 @@ void		deplacement(t_assets *assets, int new_x, int new_y);
 int			depl_haut(int keycode, t_assets *assets);
 void		actualisation_map(t_assets *assets, void *mlx, void *window);
 int			count_line(char **map);
+int			keyboard(int keycode, t_assets *assets);
 
 #endif
