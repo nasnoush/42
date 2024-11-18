@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deplacement.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:26:55 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/18 14:13:27 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/18 19:01:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	position_perso(t_assets *assets, char **map)
 
 void	actualisation_deplacement(t_assets *assets, int new_x, int new_y)
 {
-	if ((size_t)new_y < (size_t)count_line(assets->map) && (size_t)new_x < (size_t)ft_strlen(assets->map[0]))
+	if (!assets || !assets->map)
+		return ;
+	if (new_y >= 0 && new_y < count_line(assets->map) &&
+		new_x >= 0 && new_x < ft_strlen(assets->map[new_y]))
 	{
 		if (assets->map[new_y][new_x] == '0')
 		{
@@ -61,13 +64,8 @@ int	depl_haut(int keycode, t_assets *assets)
 	{
 		new_x = assets->pos_x;
 		new_y = assets->pos_y - 1;
-		printf("new_x = %d, new_y = %d\n", new_x, new_y);
-        printf("Case de la carte: %c\n", assets->map[new_y][new_x]);
-		if (new_y >= 0 && assets->map[new_y][new_x] == '0')
-		{
-			actualisation_deplacement(assets, new_x, new_y);
-        	actualisation_map(assets, assets->mlx, assets->window);
-		}
+		actualisation_deplacement(assets, new_x, new_y);
+       	actualisation_map(assets, assets->mlx, assets->window);
 	}
 	return (0);
 }
@@ -81,22 +79,22 @@ int	depl_bas(int keycode, t_assets *assets)
 	{
 		new_x = assets->pos_x;
 		new_y = assets->pos_y + 1;
-		printf("new_x = %d, new_y = %d\n", new_x, new_y);
-        printf("Case de la carte: %c\n", assets->map[new_y][new_x]);
-		if (assets->map[new_y] && assets->map[new_y][new_x] == '0')
-		{
-			actualisation_deplacement(assets, new_x, new_y);
-            actualisation_map(assets, assets->mlx, assets->window); 
-		}
+		actualisation_deplacement(assets, new_x, new_y);
+        actualisation_map(assets, assets->mlx, assets->window); 
 	}
 	return (0);
 }
 
 int	depl_left(int keycode, t_assets *assets)
 {
+	int	new_x;
+	int	new_y;
+	
 	if (keycode == 0)
 	{
-		actualisation_deplacement(assets, assets->pos_x - 1, assets->pos_y);
+		new_x = assets->pos_x - 1;
+		new_y = assets->pos_y;
+		actualisation_deplacement(assets, new_x, new_y);
 		actualisation_map(assets, assets->mlx, assets->window);
 	}
 	return (0);
@@ -104,9 +102,14 @@ int	depl_left(int keycode, t_assets *assets)
 
 int	depl_right(int keycode, t_assets *assets)
 {
+	int	new_x;
+	int	new_y;
+	
 	if (keycode == 2)
 	{
-		actualisation_deplacement(assets, assets->pos_x + 1, assets->pos_y);
+		new_x = assets->pos_x + 1;
+		new_y = assets->pos_y;
+		actualisation_deplacement(assets, new_x, new_y);
 		actualisation_map(assets, assets->mlx, assets->window);
 	}
 	return (0);
@@ -117,7 +120,7 @@ int	close_window(int keycode, t_assets *assets)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(assets->mlx, assets->window);
-		free(assets->map);
+		free_map(assets->map);
 		free(assets);
 		exit(0);
 	}
@@ -146,6 +149,18 @@ int	keyboard(int keycode, t_assets *assets)
 	return (0);
 }
 
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;	
+	}
+	free(map);
+}
 
 
 

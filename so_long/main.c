@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:04:58 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/18 13:11:23 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/18 18:59:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ int	count_line(char **map)
 		i++;
 	return (i);
 }*/
+void	free_exit(char **map, void *mlx, t_assets *assets, void *window)
+{
+	free_map(map);
+	mlx_destroy_window(mlx, window);
+	mlx_destroy_display(mlx);
+	free(mlx);
+	free(assets);
+	return (0);
+}
 
 int main (int argc, char **argv)
 {
@@ -62,11 +71,18 @@ int main (int argc, char **argv)
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, (largeur - 1) * 32, longueur * 32, "So Long");
 	assets = load_assets(mlx);
-	mlx_key_hook(window, keyboard,  assets);
-	/*actualisation_map(assets, mlx, window);*/
+	assets->map = map;
+	position_perso(assets, map);
 	place_assets(assets, map, mlx, window);
 	aff_perso(assets, mlx, window, map);
+	mlx_key_hook(window, keyboard, assets);
 	mlx_loop(mlx);
+	free_exit(map, mlx, window, assets);
+	/*mlx_key_hook(window, keyboard,  assets);
+	actualisation_map(assets, mlx, window);
+	place_assets(assets, map, mlx, window);
+	aff_perso(assets, mlx, window, map);
+	mlx_loop(mlx);*/
 	return (0);
 }
 
