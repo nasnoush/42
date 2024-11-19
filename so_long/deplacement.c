@@ -3,16 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   deplacement.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:26:55 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/18 19:01:39 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/19 14:13:00 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
 #include "GNL/get_next_line.h"
+#include "so_long.h"
 
+void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
 void	position_perso(t_assets *assets, char **map)
 {
 	int	i;
@@ -39,78 +51,168 @@ void	position_perso(t_assets *assets, char **map)
 	}
 }
 
+int	count_collect(char **map)
+{
+	int	i;
+	int	j;
+	int	count;
+
+	i = 0;
+	j = 0;
+	count = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j] != '\0')
+		{
+			if (map[i][j] == 'C')
+				count++;
+			j++;
+		}
+		i++;
+	}
+	return (count);
+}
+
+/*void	actualisation_deplacement(t_assets *assets, int new_x, int new_y)
+{
+	char	assets_actuel;
+	int		y;
+	int		x;
+	char	next_pos;
+	int		y;
+	int		x;
+
+	assets_actuel = assets->map[assets->pos_y][assets->pos_x];
+	if (assets_actuel == '0' || assets_actuel == 'P' || assets_actuel == 'E')
+	{
+		if (assets_actuel == 'C')
+		{
+			assets->collect--;
+			assets->map[assets->pos_y][assets->pos_x] = '0';
+		}
+		if (assets->collect == 0)
+		{
+			y = 0;
+			while (assets->map[y] != NULL)
+			{
+				x = 0;
+				while (assets->map[y][x] != '\0')
+				{
+					if (assets->map[y][x] == 'E')
+						exit(0);
+				x++;
+				}
+			y++;
+			}
+		}
+		if (assets_actuel == 'P')
+			assets->map[assets->pos_y][assets->pos_x] = '0';
+		else if (assets_actuel == 'E')
+			assets->map[assets->pos_y][assets->pos_x] = 'E';
+	}
+	if (!assets || !assets->map)
+		return ;
+	if ((size_t)new_y >= 0 && (size_t)new_y < (size_t)count_line(assets->map) &&
+		(size_t)new_x >= 0
+			&& (size_t)new_x < (size_t)ft_strlen(assets->map[new_y]))
+	{
+		if (assets->map[new_y][new_x] == '0' || assets->map[new_y][new_x] == 'E'
+			|| assets->map[new_y][new_x] == 'E')
+		{
+			if (assets->map[new_y][new_x] == '0')
+				exit(0);
+			assets->map[assets->pos_y][assets->pos_x] = '0';
+			assets->map[new_y][new_x] = 'P';
+			assets->pos_x = new_x;
+			assets->pos_y = new_y;
+			actualisation_map(assets, assets->mlx, assets->window);
+		}
+	}
+}*/
 void	actualisation_deplacement(t_assets *assets, int new_x, int new_y)
 {
+	char	next_pos;
+	int	y;
+	int	x;
+
 	if (!assets || !assets->map)
 		return ;
 	if (new_y >= 0 && new_y < count_line(assets->map) &&
-		new_x >= 0 && new_x < ft_strlen(assets->map[new_y]))
+		new_x >= 0
+			&& new_x < (int)ft_strlen(assets->map[new_y]))
 	{
-		if (assets->map[new_y][new_x] == '0')
+		next_pos = assets->map[new_y][new_x];
+		if (next_pos == 'M')
+			return ;
+		if (next_pos == 'C')
+		{
+			assets->collect--;
+			assets->map[new_y][new_x] = '0';
+		}
+		if (assets->collect == 0)
+		{
+			y = 0;
+			while (assets->map[y] != NULL)
+			{
+				x = 0;
+				while (assets->map[y][x] != '\0')
+				{
+					if (assets->map[y][x] == 'E' && assets->collect == 0)
+					{
+						mlx_destroy_window(assets->mlx, assets->window);
+						free_map(assets->map);
+						free(assets);
+						exit(0);
+					}
+					x++;
+				}
+				y++;
+			}
+		}
+		if (next_pos == '0' || (next_pos == 'E' && assets->collect == 0))
 		{
 			assets->map[assets->pos_y][assets->pos_x] = '0';
 			assets->map[new_y][new_x] = 'P';
 			assets->pos_x = new_x;
 			assets->pos_y = new_y;
+			actualisation_map(assets, assets->mlx, assets->window);
 		}
 	}
 }
 
 int	depl_haut(int keycode, t_assets *assets)
 {
-	int	new_x;
-	int	new_y;
 	if (keycode == 13)
 	{
-		new_x = assets->pos_x;
-		new_y = assets->pos_y - 1;
-		actualisation_deplacement(assets, new_x, new_y);
-       	actualisation_map(assets, assets->mlx, assets->window);
+		actualisation_deplacement(assets, assets->pos_x, assets->pos_y - 1);
 	}
 	return (0);
 }
 
 int	depl_bas(int keycode, t_assets *assets)
 {
-	int	new_x;
-	int	new_y;
-
 	if (keycode == 1)
 	{
-		new_x = assets->pos_x;
-		new_y = assets->pos_y + 1;
-		actualisation_deplacement(assets, new_x, new_y);
-        actualisation_map(assets, assets->mlx, assets->window); 
+		actualisation_deplacement(assets, assets->pos_x, assets->pos_y + 1);
 	}
 	return (0);
 }
 
 int	depl_left(int keycode, t_assets *assets)
 {
-	int	new_x;
-	int	new_y;
-	
 	if (keycode == 0)
 	{
-		new_x = assets->pos_x - 1;
-		new_y = assets->pos_y;
-		actualisation_deplacement(assets, new_x, new_y);
-		actualisation_map(assets, assets->mlx, assets->window);
+		actualisation_deplacement(assets, assets->pos_x - 1, assets->pos_y);
 	}
 	return (0);
 }
 
 int	depl_right(int keycode, t_assets *assets)
 {
-	int	new_x;
-	int	new_y;
-	
 	if (keycode == 2)
 	{
-		new_x = assets->pos_x + 1;
-		new_y = assets->pos_y;
-		actualisation_deplacement(assets, new_x, new_y);
-		actualisation_map(assets, assets->mlx, assets->window);
+		actualisation_deplacement(assets, assets->pos_x + 1, assets->pos_y);
 	}
 	return (0);
 }
@@ -127,9 +229,10 @@ int	close_window(int keycode, t_assets *assets)
 	return (0);
 }
 
-
 void	actualisation_map(t_assets *assets, void *mlx, void *window)
 {
+	if (!assets || !mlx || !window || !assets->map)
+		return ;
 	place_assets(assets, assets->map, mlx, window);
 	aff_perso(assets, mlx, window, assets->map);
 }
@@ -148,20 +251,3 @@ int	keyboard(int keycode, t_assets *assets)
 		close_window(keycode, assets);
 	return (0);
 }
-
-void	free_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		free(map[i]);
-		i++;	
-	}
-	free(map);
-}
-
-
-
-

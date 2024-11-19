@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:04:58 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/18 18:59:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/19 10:37:51 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,10 @@ int	count_line(char **map)
 }*/
 void	free_exit(char **map, void *mlx, t_assets *assets, void *window)
 {
-	free_map(map);
+	free(map);
 	mlx_destroy_window(mlx, window);
-	mlx_destroy_display(mlx);
 	free(mlx);
 	free(assets);
-	return (0);
 }
 
 int main (int argc, char **argv)
@@ -71,6 +69,12 @@ int main (int argc, char **argv)
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, (largeur - 1) * 32, longueur * 32, "So Long");
 	assets = load_assets(mlx);
+	assets = load_assets(mlx);
+	if (!assets)
+    	error("Failed to load assets");
+	assets->mlx = mlx;
+	assets->window = window;
+	assets->map = map;
 	assets->map = map;
 	position_perso(assets, map);
 	place_assets(assets, map, mlx, window);

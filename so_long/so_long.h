@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:07:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/18 13:29:00 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/19 13:08:20 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_assets
 	void	*mur;
 	void	*contour;
 	void	*collect;
+	int	 	collect1;
 	void	*perso;
 	void	*exit;
 	int		longueur;
@@ -42,6 +43,8 @@ typedef struct s_assets
 	void	*window;
 	int		new_x;
 	int		new_y;
+	int		collectibles;
+
 }t_assets;
 
 void		*def_assets_to_char(char i, t_assets *assets);
@@ -55,5 +58,14 @@ int			depl_haut(int keycode, t_assets *assets);
 void		actualisation_map(t_assets *assets, void *mlx, void *window);
 int			count_line(char **map);
 int			keyboard(int keycode, t_assets *assets);
+void		error(char *str);
+void		free_map(char **map);
+void		free_exit(char **map, void *mlx, t_assets *assets, void *window);
+int			main(int argc, char **argv);
+void		actualisation_deplacement(t_assets *assets, int new_x, int new_y);
+int			depl_left(int keycode, t_assets *assets);
+int			depl_right(int keycode, t_assets *assets);
+int			close_window(int keycode, t_assets *assets);
+void		aff_collect(t_assets *assets, void *mlx, void *window, char **map);
 
 #endif
