@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:26:55 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/19 14:13:00 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:02:00 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,50 +133,39 @@ int	count_collect(char **map)
 void	actualisation_deplacement(t_assets *assets, int new_x, int new_y)
 {
 	char	next_pos;
-	int	y;
-	int	x;
 
 	if (!assets || !assets->map)
 		return ;
-	if (new_y >= 0 && new_y < count_line(assets->map) &&
-		new_x >= 0
-			&& new_x < (int)ft_strlen(assets->map[new_y]))
+	if (new_y >= 0 && new_y < count_line(assets->map)
+		&& new_x >= 0
+		&& new_x < (int)ft_strlen(assets->map[new_y]))
 	{
 		next_pos = assets->map[new_y][new_x];
-		if (next_pos == 'M')
+		if (next_pos == '1')
 			return ;
-		if (next_pos == 'C')
-		{
-			assets->collect--;
-			assets->map[new_y][new_x] = '0';
-		}
-		if (assets->collect == 0)
-		{
-			y = 0;
-			while (assets->map[y] != NULL)
-			{
-				x = 0;
-				while (assets->map[y][x] != '\0')
-				{
-					if (assets->map[y][x] == 'E' && assets->collect == 0)
-					{
-						mlx_destroy_window(assets->mlx, assets->window);
-						free_map(assets->map);
-						free(assets);
-						exit(0);
-					}
-					x++;
-				}
-				y++;
-			}
-		}
-		if (next_pos == '0' || (next_pos == 'E' && assets->collect == 0))
+		if (next_pos == 'E' && assets->collectible > 0)
+			return ;
+		if (next_pos == '0' || next_pos == 'C')
 		{
 			assets->map[assets->pos_y][assets->pos_x] = '0';
+			if (next_pos == 'C')
+				assets->collectible--;
 			assets->map[new_y][new_x] = 'P';
 			assets->pos_x = new_x;
 			assets->pos_y = new_y;
+			assets->count_moove++;
+			aff_moove(assets, assets->mlx, assets->window);
+			printf("Nombre de mouvement : %d\n", assets->count_moove);
 			actualisation_map(assets, assets->mlx, assets->window);
+		}
+		if (next_pos == 'E' && assets->collectible == 0)
+		{
+			printf("Bien joué !\nTu as effectué %d mouvements\n",
+				assets->count_moove);
+			mlx_destroy_window(assets->mlx, assets->window);
+			free_map(assets->map);
+			free(assets);
+			exit(0);
 		}
 	}
 }
@@ -233,8 +222,10 @@ void	actualisation_map(t_assets *assets, void *mlx, void *window)
 {
 	if (!assets || !mlx || !window || !assets->map)
 		return ;
+	mlx_clear_window(mlx, window);
 	place_assets(assets, assets->map, mlx, window);
 	aff_perso(assets, mlx, window, assets->map);
+	aff_moove(assets, mlx, window);
 }
 
 int	keyboard(int keycode, t_assets *assets)

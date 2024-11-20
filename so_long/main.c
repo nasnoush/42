@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:04:58 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/19 10:37:51 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:07:15 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,21 @@ int main (int argc, char **argv)
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, (largeur - 1) * 32, longueur * 32, "So Long");
 	assets = load_assets(mlx);
-	assets = load_assets(mlx);
 	if (!assets)
     	error("Failed to load assets");
 	assets->mlx = mlx;
 	assets->window = window;
 	assets->map = map;
 	assets->map = map;
+	assets->collectible = count_collect(map);
+	aff_moove(assets, mlx, window);
 	position_perso(assets, map);
 	place_assets(assets, map, mlx, window);
 	aff_perso(assets, mlx, window, map);
 	mlx_key_hook(window, keyboard, assets);
 	mlx_loop(mlx);
 	free_exit(map, mlx, window, assets);
+	mlx_hook(window, 17, 0, close_window, assets);
 	/*mlx_key_hook(window, keyboard,  assets);
 	actualisation_map(assets, mlx, window);
 	place_assets(assets, map, mlx, window);

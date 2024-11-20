@@ -4,7 +4,7 @@ CC      = gcc -I./minilibx -I./GNL
 MLX     = -L./minilibx -lmlx -framework OpenGL -framework AppKit -lz
 OBJ     = $(SRCS:.c=.o)
 
-SRCS    = main.c GNL/get_next_line.c GNL/get_next_line_utils.c read_map.c player.c deplacement.c error.c
+SRCS    = main.c GNL/get_next_line.c GNL/get_next_line_utils.c read_map.c player.c deplacement.c error.c deplacement2.c affichage.c
 
 all: $(NAME)
 

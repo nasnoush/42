@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:07:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/19 13:08:20 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/20 12:59:04 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct s_assets
 	void	*window;
 	int		new_x;
 	int		new_y;
-	int		collectibles;
+	int		collectible;
+	int		count_moove;
 
 }t_assets;
 
@@ -67,5 +68,8 @@ int			depl_left(int keycode, t_assets *assets);
 int			depl_right(int keycode, t_assets *assets);
 int			close_window(int keycode, t_assets *assets);
 void		aff_collect(t_assets *assets, void *mlx, void *window, char **map);
+int			count_collect(char **map);
+void		count_moove(t_assets *assets);
+void		aff_moove(t_assets *assets, void *mlx, void *window);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 09:58:18 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/19 14:11:03 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/11/20 14:03:18 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ t_assets	*load_assets(void *mlx)
 			&longueur);
 	assets->collect = mlx_xpm_file_to_image(mlx, "assets/collect.xpm", &largeur,
 			&longueur);
+	assets->mlx = mlx;
+	assets->count_moove = 0;
 	return (assets);
 }
 
@@ -85,7 +87,7 @@ void	*def_assets_to_char(char i, t_assets *assets)
 		return (assets->exit);
 	else if (i == 'P')
 		return (assets->perso);
-	else if (i == 'M')
+	else if (i == '1')
 		return (assets->contour);
 	else
 	{
