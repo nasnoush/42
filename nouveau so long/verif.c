@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:39:17 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/27 13:49:02 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/01 19:53:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	verif_map(t_assets *assets)
 	int	i;
 	int	j;
 	int	exit_count;
-	int	item_count;
+	int	item_count;                  !!!!!!!!!!!!!!!!!  !!!!!!!!!!!!!!!!! tester les fonctions une a une
 	int	start_count;
 
 	i = 0;
@@ -27,11 +27,7 @@ int	verif_map(t_assets *assets)
 	exit_count = 0;
 	item_count = 0;
 	start_count = 0;
-	if (!assets || !assets->map)
-	{
-		ft_printf("Erreur : Carte invalide.\n");
-		return (0);
-	}
+	verif_assets(t_assets *assets)
 	while (i < count_line(assets->map))
 	{
 		j = 0;
@@ -59,11 +55,7 @@ int	verif_rectangulaire(t_assets *assets)
 
 	i = 0;
 	map_width = ft_strlen(assets->map[0]);
-	if (!assets || !assets->map)
-	{
-		ft_printf("Erreur : Carte invalide.\n");
-		return (0);
-	}
+	verif_assets(t_assets *assets)
 	while (i < count_line(assets->map))
 	{
 		if ((int)ft_strlen(assets->map[i]) != map_width)
@@ -82,11 +74,7 @@ int	verif_mur(t_assets *assets)
 	int	j;
 
 	i = 0;
-	if (!assets || !assets->map)
-	{
-		ft_printf("Erreur : Carte invalide.\n");
-		return (0);
-	}
+	verif_assets(t_assets *assets)
 	while (i < count_line(assets->map))
 	{
 		j = 0;
@@ -103,7 +91,7 @@ int	verif_mur(t_assets *assets)
 	return (1);
 }
 
-int	check_duplicates(char **map)
+int	check_duplicates(t_assets *assets)
 {
 	int	i;
 	int	j;
@@ -113,8 +101,7 @@ int	check_duplicates(char **map)
 	player_count = 0;
 	exit_count = 0;
 	i = 0;
-	if (!map)
-		return (0);
+	verif_assets(t_assets *assets)
 	while (map[i])
 	{
 		j = 0;
@@ -136,16 +123,16 @@ int	check_duplicates(char **map)
 	return (1);
 }
 
-void	change_end_line(char **map)
+void	change_end_line(t_assets *assets)
 {
 	int	i;
 	int	len;
 
 	i = 0;
-	while (map[i])
+	while (map[i])                             // ici a verifier la fonction car ca change ailleurs
 	{
 		len = ft_strlen(map[i]);
-		if (map[i][len -1] == '\n')
+		if (map[i][len - 1] == '\n')
 			map[i][len - 1] = '\0';
 		i++;
 	}
@@ -153,12 +140,8 @@ void	change_end_line(char **map)
 
 int	check_all_map_conditions(t_assets *assets)
 {
-	if (!assets || !assets->map)
-	{
-		ft_printf("Erreur : Carte invalide.\n");
-		return (0);
-	}
-	change_end_line(assets->map);
+	verif_assets(t_assets *assets)
+	change_end_line(assets->map);               // a voir si je garde cette ligne ou non
 	if (verif_map(assets) == 0)
 		return (0);
 	if (verif_rectangulaire(assets) == 0)
