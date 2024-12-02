@@ -6,13 +6,13 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 09:58:18 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/27 11:54:48 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:28:11 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GNL/get_next_line.h"
-#include "so_long.h"
 #include "printf/ft_printf.h"
+#include "so_long.h"
 
 t_assets	*load_assets(void *mlx)
 {
@@ -53,8 +53,8 @@ void	place_assets(t_assets *assets, char **map, void *mlx, void *window)
 			mlx_put_image_to_window(mlx, window, assets->sol1, y * 32, x * 32);
 			recup_asset = def_assets_to_char(map[x][y], assets);
 			if (recup_asset != NULL && map[x][y] != '0')
-				mlx_put_image_to_window(mlx, window, recup_asset,
-					y * 32, x * 32);
+				mlx_put_image_to_window(mlx, window, recup_asset, y * 32, x
+					* 32);
 			y++;
 		}
 		x++;
@@ -77,8 +77,7 @@ void	*def_assets_to_char(char i, t_assets *assets)
 		return (assets->contour);
 	return (NULL);
 }
-
-char	**charge_map(const char *filename)
+char	**charge_map(const char *filename, t_assets *assets)
 {
 	int		fd;
 	char	**map;
@@ -86,24 +85,24 @@ char	**charge_map(const char *filename)
 	int		row;
 
 	fd = open(filename, O_RDONLY);
-	map = NULL;
-	row = 0;
-	line = get_next_line(fd);
 	if (!filename || fd < 0)
 		return (NULL);
 	map = malloc(sizeof(char *) * MAX_LINES);
 	if (map == NULL)
 		return (NULL);
+	row = 0;
+	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		map[row] = line;
-		row++;
+		map[row++] = line;
 		if (row >= MAX_LINES)
 			break ;
 		line = get_next_line(fd);
 	}
 	close(fd);
 	map[row] = NULL;
+	if (assets)
+		assets->map = map;
 	return (map);
 }
 

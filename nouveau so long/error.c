@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:16:19 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/30 12:18:34 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 12:53:15 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,30 @@ void	error(char *str)
 	exit(EXIT_FAILURE);
 }
 
-void	verif_assets(t_assets *assets)
+int	verif_assets(t_assets *assets)
 {
 	if (!assets || !assets->map)
 	{
 		ft_printf("Erreur : Carte invalide.\n");
 		return (0);
 	}
+	return (1);
+}
+
+int	count_line(char **map)
+{
+	int	count;
+
+	count = 0;
+	while (map[count] != NULL)
+		count++;
+	return (count);
+}
+
+void	free_exit(char **map, void *mlx, t_assets *assets, void *window)
+{
+	free(map);
+	mlx_destroy_window(mlx, window);
+	free(mlx);
+	free(assets);
 }

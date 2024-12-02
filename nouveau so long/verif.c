@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:39:17 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/01 19:53:55 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/02 14:37:05 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ int	verif_map(t_assets *assets)
 	int	i;
 	int	j;
 	int	exit_count;
-	int	item_count;                  !!!!!!!!!!!!!!!!!  !!!!!!!!!!!!!!!!! tester les fonctions une a une
+	int	item_count;
 	int	start_count;
 
 	i = 0;
-	j = 0;
 	exit_count = 0;
 	item_count = 0;
 	start_count = 0;
-	verif_assets(t_assets *assets)
+	if (!verif_assets(assets))
+		return (0);
 	while (i < count_line(assets->map))
 	{
 		j = 0;
@@ -35,16 +35,19 @@ int	verif_map(t_assets *assets)
 		{
 			if (assets->map[i][j] == 'E')
 				exit_count++;
-			if (assets->map[i][j] == 'C')
+			else if (assets->map[i][j] == 'C')
 				item_count++;
-			if (assets->map[i][j] == 'P')
+			else if (assets->map[i][j] == 'P')
 				start_count++;
 			j++;
 		}
 		i++;
 	}
-	if (exit_count == 0 || item_count == 0 || start_count == 0)
+	if (exit_count != 1 || item_count == 0 || start_count != 1)
+	{
+		ft_printf("Erreur : Carte invalide\n");
 		return (0);
+	}
 	return (1);
 }
 
@@ -53,9 +56,14 @@ int	verif_rectangulaire(t_assets *assets)
 	int	i;
 	int	map_width;
 
-	i = 0;
+	verif_assets(assets);
+	if (count_line(assets->map) == 0)
+	{
+		ft_printf("Erreur : Carte vide\n");
+		return (0);
+	}
 	map_width = ft_strlen(assets->map[0]);
-	verif_assets(t_assets *assets)
+	i = 0;
 	while (i < count_line(assets->map))
 	{
 		if ((int)ft_strlen(assets->map[i]) != map_width)
@@ -74,7 +82,7 @@ int	verif_mur(t_assets *assets)
 	int	j;
 
 	i = 0;
-	verif_assets(t_assets *assets)
+	verif_assets(assets);
 	while (i < count_line(assets->map))
 	{
 		j = 0;
@@ -101,15 +109,15 @@ int	check_duplicates(t_assets *assets)
 	player_count = 0;
 	exit_count = 0;
 	i = 0;
-	verif_assets(t_assets *assets)
-	while (map[i])
+	verif_assets(assets);
+	while (assets->map[i])
 	{
 		j = 0;
-		while (map[i][j] != '\0')
+		while (assets->map[i][j] != '\0')
 		{
-			if (map[i][j] == 'P')
+			if (assets->map[i][j] == 'P')
 				player_count++;
-			if (map[i][j] == 'E')
+			if (assets->map[i][j] == 'E')
 				exit_count++;
 			j++;
 		}
@@ -123,33 +131,46 @@ int	check_duplicates(t_assets *assets)
 	return (1);
 }
 
-void	change_end_line(t_assets *assets)
+void	change_end_line(char **map)
 {
 	int	i;
-	int	len;
+	int	len;	
+	int	total_lines;
 
+	total_lines = count_line(map);
 	i = 0;
-	while (map[i])                             // ici a verifier la fonction car ca change ailleurs
+	while (map[i])
 	{
 		len = ft_strlen(map[i]);
-		if (map[i][len - 1] == '\n')
+		if (i != total_lines - 1 && map[i][len - 1] == '\n')
+		{
 			map[i][len - 1] = '\0';
+		}
 		i++;
+	}
+	len = ft_strlen(map[total_lines - 1]);
+	if (map[total_lines - 1][len - 1] != '1')
+	{
+		map[total_lines - 1][len] = '1';
+		map[total_lines - 1][len + 1] = '\0';
 	}
 }
 
 int	check_all_map_conditions(t_assets *assets)
 {
-	verif_assets(t_assets *assets)
-	change_end_line(assets->map);               // a voir si je garde cette ligne ou non
-	if (verif_map(assets) == 0)
+	if (!assets || !assets->map)
+	{
+		ft_printf("Erreur : Carte invalide.\n");
 		return (0);
-	if (verif_rectangulaire(assets) == 0)
+	}
+	if (verif_map(assets) == 0)   // lui fonctionne
 		return (0);
-	if (verif_mur(assets) == 0)
+	if (check_duplicates(assets) == 0) // lui pas trop
 		return (0);
-	if (check_duplicates(assets->map) == 0)
+	/*if (verif_rectangulaire(assets) == 0) // lui fonctionne pas
 		return (0);
+	if (verif_mur(assets) == 0)   // lui foncntionne pas
+		return (0);*/
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:07:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/27 13:50:20 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:51:41 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_assets
 }t_assets;
 
 void		*def_assets_to_char(char i, t_assets *assets);
-char		**charge_map(const char *filename);
+char		**charge_map(const char *filename, t_assets *assets);
 void		place_assets(t_assets *assets, char **map, void *mlx, void *window);
 t_assets	*load_assets(void *mlx);
 void		aff_perso(t_assets *assets, void *mlx, void *window, char **map);
@@ -87,7 +87,11 @@ void		check_move(t_assets *assets, char next_pos);
 int			check_map(t_assets *assets, int new_x, int new_y);
 void		change_end_line(char **map);
 int			verif_map(t_assets *assets);
-
-
+int			verif_assets(t_assets *assets);
+int			check_duplicates(t_assets *assets);
+int			verif_mur(t_assets *assets);
+int			verif_rectangulaire(t_assets *assets);
+int			count_line(char **map);
+void		free_exit(char **map, void *mlx, t_assets *assets, void *window);
 
 #endif
