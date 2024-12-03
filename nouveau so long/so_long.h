@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:07:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/03 12:39:05 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:33:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,6 @@ int			verif_mur(t_assets *assets);
 int			verif_rectangulaire(t_assets *assets);
 int			count_line(char **map);
 void		free_exit(char **map, void *mlx, t_assets *assets, void *window);
+int			check_map_validity(t_assets *assets);
 
 #endif

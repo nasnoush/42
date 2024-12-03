@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:39:17 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/03 12:47:05 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/03 18:34:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,8 @@ int	check_all_map_conditions(t_assets *assets)
 	if (verif_rectangulaire(assets) == 0)
 		return (0);
 	if (verif_mur(assets) == 0)
+		return (0);
+	if (check_map_validity(assets) == 0)
 		return (0);
 	return (1);
 }
