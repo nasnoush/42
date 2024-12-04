@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:07:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/03 18:33:25 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/04 13:44:52 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char		**charge_map(const char *filename, t_assets *assets);
 void		place_assets(t_assets *assets, char **map, void *mlx, void *window);
 t_assets	*load_assets(void *mlx);
 void		aff_perso(t_assets *assets, void *mlx, void *window, char **map);
-void		position_perso(t_assets *assets, char **map);
+void		position_perso(t_assets *assets);
 void		deplacement(t_assets *assets, int new_x, int new_y);
 int			depl_haut(int keycode, t_assets *assets);
 void		actualisation_map(t_assets *assets, void *mlx, void *window);
@@ -93,5 +93,7 @@ int			verif_rectangulaire(t_assets *assets);
 int			count_line(char **map);
 void		free_exit(char **map, void *mlx, t_assets *assets, void *window);
 int			check_map_validity(t_assets *assets);
+int			count_exit(char **map);
+char		*ft_strchr(const char *s, int c);
 
 #endif

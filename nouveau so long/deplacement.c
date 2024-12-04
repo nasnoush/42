@@ -6,13 +6,13 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 16:26:55 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/27 12:38:00 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:45:25 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "GNL/get_next_line.h"
-#include "so_long.h"
 #include "printf/ft_printf.h"
+#include "so_long.h"
 
 void	free_map(char **map)
 {
@@ -27,21 +27,21 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	position_perso(t_assets *assets, char **map)
+void	position_perso(t_assets *assets)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	if (assets == NULL || map == NULL)
+	if (assets == NULL || assets->map == NULL)
 		return ;
-	while (map[i])
+	while (assets->map[i])
 	{
 		j = 0;
-		while (map[i][j] != '\0')
+		while (assets->map[i][j] != '\0')
 		{
-			if (map[i][j] == 'P')
+			if (assets->map[i][j] == 'P')
 			{
 				assets->pos_y = i;
 				assets->pos_x = j;
@@ -74,6 +74,28 @@ int	count_collect(char **map)
 		i++;
 	}
 	return (count);
+}
+
+int	count_exit(char **map)
+{
+	int	x;
+	int	y;
+	int	exit_count;
+
+	exit_count = 0;
+	y = 0;
+	while (map[y])
+	{
+		x = 0;
+		while (map[y][x])
+		{
+			if (map[y][x] == 'E')
+				exit_count++;
+			x++;
+		}
+		y++;
+	}
+	return (exit_count);
 }
 
 void	actualisation_map(t_assets *assets, void *mlx, void *window)

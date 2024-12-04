@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:16:19 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/02 12:53:15 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:02:29 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,25 @@ void	free_exit(char **map, void *mlx, t_assets *assets, void *window)
 	mlx_destroy_window(mlx, window);
 	free(mlx);
 	free(assets);
+}
+
+void	*free_assets(t_assets *assets)
+{
+	if (!assets)
+		return (NULL);
+	if (assets->mlx)
+	{
+		if (assets->sol1)
+			mlx_destroy_image(assets->mlx, assets->sol1);
+		if (assets->exit)
+			mlx_destroy_image(assets->mlx, assets->exit);
+		if (assets->contour)
+			mlx_destroy_image(assets->mlx, assets->contour);
+		if (assets->perso)
+			mlx_destroy_image(assets->mlx, assets->perso);
+		if (assets->collect)
+			mlx_destroy_image(assets->mlx, assets->collect);
+	}
+	free(assets);
+	return (NULL);
 }

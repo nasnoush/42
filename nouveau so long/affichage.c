@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 12:51:08 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/02 14:37:22 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/04 14:14:36 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ void	aff_end_screen(void *mlx, void *window)
 
 	screen = "Bien joue\n";
 	ft_printf("%s", screen);
-	mlx_string_put(mlx, window, 2, 20, 0x00FFFFFF, screen);
+	mlx_string_put(mlx, window, 20, 20, 0x00FFFFFF, screen);
 	sleep(5);
 }

@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 09:58:18 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/03 12:41:12 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:01:50 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	place_assets(t_assets *assets, char **map, void *mlx, void *window)
 			recup_asset = def_assets_to_char(map[x][y], assets);
 			if (recup_asset != NULL && map[x][y] != '0')
 				mlx_put_image_to_window(mlx, window, recup_asset, y * 32, x
-						* 32);
+					* 32);
 			y++;
 		}
 		x++;
@@ -77,38 +77,16 @@ void	*def_assets_to_char(char i, t_assets *assets)
 		return (assets->contour);
 	return (NULL);
 }
-/*char	**charge_map(const char *filename, t_assets *assets)
-{
-	int		fd;
-	char	**map;
-	char	*line;
-	int		row;
-	int		fd;
-	char	**map;
-	char	*line;
-	int		row;
 
-	fd = open(filename, O_RDONLY);
-	if (!filename || fd < 0)
-		return (NULL);
-	map = malloc(sizeof(char *) * MAX_LINES);
-	if (map == NULL)
-		return (NULL);
-	row = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		map[row++] = line;
-		if (row >= MAX_LINES)
-			break ;
-		line = get_next_line(fd);
-	}
-	close(fd);
-	map[row] = NULL;
-	if (assets)
-		assets->map = map;
-	return (map);
-}*/
+static void	remove_newline(char *line)
+{
+	char	*newline_pos;
+
+	newline_pos = ft_strchr(line, '\n');
+	if (newline_pos)
+		*newline_pos = '\0';
+}
+
 char	**charge_map(const char *filename, t_assets *assets)
 {
 	int		fd;
@@ -116,20 +94,17 @@ char	**charge_map(const char *filename, t_assets *assets)
 	char	*line;
 	int		row;
 
-	fd = open(filename, O_RDONLY);
-	if (!filename || fd < 0)
-		return (NULL);
-	map = malloc(sizeof(char *) * MAX_LINES);
-	if (map == NULL)
-		return (NULL);
 	row = 0;
+	fd = open(filename, O_RDONLY);
 	line = get_next_line(fd);
+	map = malloc(sizeof(char *) * MAX_LINES);
+	if (!filename || fd < 0 || (!map))
+		return (NULL);
 	while (line != NULL)
 	{
-		line[strcspn(line, "\n")] = '\0';
-		map[row] = ft_strdup(line);
+		remove_newline(line);
+		map[row++] = ft_strdup(line);
 		free(line);
-		row++;
 		if (row >= MAX_LINES)
 			break ;
 		line = get_next_line(fd);
@@ -139,25 +114,4 @@ char	**charge_map(const char *filename, t_assets *assets)
 	if (assets)
 		assets->map = map;
 	return (map);
-}
-
-void	*free_assets(t_assets *assets)
-{
-	if (!assets)
-		return (NULL);
-	if (assets->mlx)
-	{
-		if (assets->sol1)
-			mlx_destroy_image(assets->mlx, assets->sol1);
-		if (assets->exit)
-			mlx_destroy_image(assets->mlx, assets->exit);
-		if (assets->contour)
-			mlx_destroy_image(assets->mlx, assets->contour);
-		if (assets->perso)
-			mlx_destroy_image(assets->mlx, assets->perso);
-		if (assets->collect)
-			mlx_destroy_image(assets->mlx, assets->collect);
-	}
-	free(assets);
-	return (NULL);
 }

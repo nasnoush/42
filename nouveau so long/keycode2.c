@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 13:43:40 by nadahman          #+#    #+#             */
-/*   Updated: 2024/11/21 14:15:17 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:48:00 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,24 @@ int	keyboard(int keycode, t_assets *assets)
 	else if (keycode == 53)
 		close_window(keycode, assets);
 	return (0);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == (char)c)
+		{
+			return ((char *)&s[i]);
+		}
+		i++;
+	}
+	if ((char)c == '\0')
+	{
+		return ((char *)&s[i]);
+	}
+	return (NULL);
 }
