@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 12:13:32 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/05 12:16:59 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/09 10:18:41 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nMemory allocation failed\n");
 		return (1);
 	}
-	memset(assets, 0, sizeof(t_assets));
+	ft_memset(assets, 0, sizeof(t_assets));
 	if (!check_map_loading(assets, argv[1])
 		|| !init_mlx_window(assets, assets->map)
 		|| !load_game_assets(assets)

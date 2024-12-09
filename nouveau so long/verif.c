@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:39:17 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/05 13:48:33 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:20:55 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	verif_map(t_assets *assets)
 	if (exit_count == 0 || item_count == 0 || start_count == 0)
 	{
 		ft_printf("Erreur : Il manque un element.\n");
+		free_map(assets->map);
+		assets->map = NULL;
 		return (0);
 	}
 	return (1);
@@ -42,6 +44,8 @@ int	verif_rectangulaire(t_assets *assets)
 	if (count_line(assets->map) == 0)
 	{
 		ft_printf("Erreur : Carte vide\n");
+		free_map(assets->map);
+		assets->map = NULL;
 		return (0);
 	}
 	map_width = ft_strlen(assets->map[0]);
@@ -51,6 +55,8 @@ int	verif_rectangulaire(t_assets *assets)
 		if ((int)ft_strlen(assets->map[i]) != map_width)
 		{
 			ft_printf("Erreur : Carte non rectangulaire\n");
+			free_map(assets->map);
+			assets->map = NULL;
 			return (0);
 		}
 		i++;
@@ -63,8 +69,8 @@ int	verif_mur(t_assets *assets)
 	int	i;
 	int	j;
 
-	i = 0;
 	verif_assets(assets);
+	i = 0;
 	while (i < count_line(assets->map))
 	{
 		j = 0;
@@ -73,7 +79,12 @@ int	verif_mur(t_assets *assets)
 			if ((i == 0 || i == count_line(assets->map) - 1 || j == 0
 					|| j == (int)ft_strlen(assets->map[i]) - 1)
 				&& assets->map[i][j] != '1')
-				return (ft_printf("La carte n'est pas entourée de murs.\n"), 0);
+			{
+				ft_printf("La carte n'est pas entourée de murs.\n");
+				free_map(assets->map);
+				assets->map = NULL;
+				return (0);
+			}
 			j++;
 		}
 		i++;
@@ -93,12 +104,14 @@ int	check_duplicates(t_assets *assets)
 	{
 		ft_printf("Erreur :\n");
 		ft_printf("Il doit y avoir exactement un personnage et une sortie.\n");
+		free_map(assets->map);
+    	assets->map = NULL;
 		return (0);
 	}
 	return (1);
 }
 
-int	check_all_map_conditions(t_assets *assets)
+/*int	check_all_map_conditions(t_assets *assets)
 {
 	if (!assets || !assets->map)
 	{
@@ -119,4 +132,35 @@ int	check_all_map_conditions(t_assets *assets)
 		return (0);
 	}
 	return (1);
+}*/
+int	check_all_map_conditions(t_assets *assets)
+{
+	int result;
+
+	if (!assets || !assets->map)
+	{
+		ft_printf("Erreur : Carte invalide.\n");
+		return (0);
+	}
+	result = 1;
+	if (verif_map(assets) == 0)
+		result = 0;
+	if (check_duplicates(assets) == 0)
+		result = 0;
+	if (verif_rectangulaire(assets) == 0)
+		result = 0;
+	if (verif_mur(assets) == 0)
+		result = 0;
+	if (check_map_validity(assets) == 0)
+	{
+		printf("Erreur :\nAucun chemin valide\n");
+		result = 0;
+	}
+	if (result == 0 && assets->map)
+	{
+		free_map(assets->map);
+		assets->map = NULL;
+		return (0);
+	}
+	return (result);
 }

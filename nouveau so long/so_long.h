@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:07:47 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/05 13:59:11 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/09 10:23:44 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int			count_map_elements(t_assets *assets, char element);
 void		count_collectibles(t_assets *assets);
 int			count_map_height(char **map);
 int			close_window_x(t_assets *assets);
-
+void		*ft_memset(void *s, int c, size_t n);
 
 #endif

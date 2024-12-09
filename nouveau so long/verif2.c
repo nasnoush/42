@@ -19,6 +19,7 @@
 
 void	initialize_map_dimensions(t_assets *assets)
 {
+	verif_assets(assets);
 	assets->longueur = 0;
 	while (assets->map[assets->longueur])
 		assets->longueur++;
@@ -33,6 +34,7 @@ static void	initialize_start_position(t_assets *assets)
 	int	j;
 
 	i = 0;
+	verif_assets(assets);
 	while (i < assets->longueur)
 	{
 		j = 0;
@@ -81,6 +83,7 @@ static char	**ft_map_dup(char **map)
 
 static int	flood_fill(t_assets *assets, int x, int y, char **visited)
 {
+	verif_assets(assets);
 	if (x < 0 || x >= assets->largeur || y < 0 || y >= assets->longueur
 		|| visited[y][x] == 'V' || assets->map[y][x] == '1')
 		return (0);
@@ -101,6 +104,7 @@ int	check_map_validity(t_assets *assets)
 	char	**visited;
 	int		i;
 
+	verif_assets(assets);
 	initialize_map_dimensions(assets);
 	initialize_start_position(assets);
 	count_collectibles(assets);

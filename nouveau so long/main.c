@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:04:58 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/05 14:08:34 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/09 12:05:35 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	load_game_assets(t_assets *assets)
 
 int	validate_game_setup(t_assets *assets)
 {
+	if (!assets)
+        return (0);
 	if (check_all_map_conditions(assets) == 0)
 	{
 		return (0);

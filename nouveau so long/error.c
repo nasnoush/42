@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:16:19 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/04 13:02:29 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:23:26 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	verif_assets(t_assets *assets)
 {
 	if (!assets || !assets->map)
 	{
-		ft_printf("Erreur : Carte invalide.\n");
 		return (0);
 	}
 	return (1);
@@ -64,7 +63,12 @@ void	*free_assets(t_assets *assets)
 			mlx_destroy_image(assets->mlx, assets->perso);
 		if (assets->collect)
 			mlx_destroy_image(assets->mlx, assets->collect);
+		if (assets->window)
+        	mlx_destroy_window(assets->mlx, assets->window);
+		free(assets->mlx);
 	}
+	if (assets->map)
+		free_map(assets->map);
 	free(assets);
 	return (NULL);
 }
