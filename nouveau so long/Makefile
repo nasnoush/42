@@ -6,12 +6,12 @@
 #    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/04 13:20:44 by nadahman          #+#    #+#              #
-#    Updated: 2024/12/10 12:54:43 by nadahman         ###   ########.fr        #
+#    Updated: 2024/12/11 13:58:25 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME    = so_long
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS  = -Wall -Wextra -Werror #-fsanitize=address
 CC      = gcc -I./minilibx -I./GNL
 MLX     = -L./minilibx -lmlx -framework OpenGL -framework AppKit -lz
 OBJ     = $(SRCS:.c=.o)

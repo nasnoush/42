@@ -107,7 +107,7 @@ static int	flood_fill(t_assets *assets, int x, int y, char **visited)
 	return (1);
 }
 
-int	check_map_validity(t_assets *assets)
+/*int	check_map_validity(t_assets *assets)
 {
 	char	**visited;
 	int		i;
@@ -128,4 +128,33 @@ int	check_map_validity(t_assets *assets)
 	free(visited);
 	return (assets->exit_count > 0
 		&& assets->collectible == assets->item_count);
+}*/
+
+int	check_map_validity(t_assets *assets)
+{
+	char	**visited;
+	int		i;
+
+	verif_assets(assets);
+	initialize_map_dimensions(assets);
+	initialize_start_position(assets);
+	count_collectibles(assets);
+	visited = ft_map_dup(assets->map);
+	if (!visited)
+		return (0);
+	assets->exit_count = 0;
+	assets->collectible = 0;
+	flood_fill(assets, assets->pos_x, assets->pos_y, visited);
+	i = 0;
+	while (visited[i])
+		free(visited[i++]);
+	free(visited);
+	if (assets->exit_count == 0 || assets->collectible != assets->item_count)
+	{
+		ft_printf("Erreur : La carte n'est pas valide.\n");
+		free_map(assets->map);
+		assets->map = NULL;
+		exit(0);
+	}
+	return (1);
 }

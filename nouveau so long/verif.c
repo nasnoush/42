@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 13:39:17 by nadahman          #+#    #+#             */
-/*   Updated: 2024/12/10 12:52:30 by nadahman         ###   ########.fr       */
+/*   Updated: 2024/12/11 11:52:48 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	verif_map(t_assets *assets)
 		ft_printf("Erreur : Il manque un element.\n");
 		free_map(assets->map);
 		assets->map = NULL;
-		return (0);
+		exit (0);
 	}
 	return (1);
 }
@@ -57,7 +57,7 @@ int	verif_rectangulaire(t_assets *assets)
 			ft_printf("Erreur : Carte non rectangulaire\n");
 			free_map(assets->map);
 			assets->map = NULL;
-			return (0);
+			exit (0);
 		}
 		i++;
 	}
@@ -84,7 +84,7 @@ int	verif_mur(t_assets *assets)
 				ft_printf("La carte n'est pas entourée de murs.\n");
 				free_map(assets->map);
 				assets->map = NULL;
-				return (0);
+				exit (0);
 			}
 			j++;
 		}
@@ -108,7 +108,7 @@ int	check_duplicates(t_assets *assets)
 		ft_printf("Il doit y avoir exactement un personnage et une sortie.\n");
 		free_map(assets->map);
 		assets->map = NULL;
-		return (0);
+		exit (0);
 	}
 	return (1);
 }
