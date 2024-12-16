@@ -17,8 +17,8 @@
 # include <stdlib.h>
 # include "printf/ft_printf.h"
 
-# define SIGUSR1 10
-# define SIGUSR2 12
+/*# define SIGUSR1 10
+# define SIGUSR2 12*/
 
 typedef struct s_signal
 {
@@ -29,5 +29,8 @@ typedef struct s_signal
 void	sigusr1_handler(int signum);
 void	sigusr2_handler(int signum);
 void	send_signal(int pid, char c);
+int		ft_atoi(char *str);
+void	aff_message(char *str);
+int		ft_strlen(char *str);
 
 #endif

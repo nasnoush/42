@@ -3,23 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/14 11:44:01 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/14 11:44:01 by marvin           ###   ########.fr       */
+/*   Created: 2024/12/16 10:23:37 by nadahman          #+#    #+#             */
+/*   Updated: 2024/12/16 10:23:37 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 #include "minitalk.h"
 
 char	*convert_binary(char c)
 {
-	int	i;
-	char *bits;
+	int		i;
+	char	*bits;
 
 	i = 7;
 	bits = malloc(9 * sizeof(char));
 	if (!bits)
-		return NULL ;
+		return (NULL);
 	while (i >= 0)
 	{
 		bits[7 - i] = ((c >> i) & 1) + '0';
@@ -29,7 +31,7 @@ char	*convert_binary(char c)
 	return (bits);
 }
 
-void	send_signal(int PID, char c)
+void	send_signal(int pid, char c)
 {
 	char	*bit;
 	int		j;
@@ -45,7 +47,7 @@ void	send_signal(int PID, char c)
 	{
 		if (bit[j] == '0')
 		{
-			if (kill(PID, SIGUSR1) == -1)
+			if (kill(pid, SIGUSR1) == -1)
 			{
 				ft_printf("Erreur lors de l'envoi du signal SIGUSR1\n");
 				free(bit);
@@ -54,36 +56,22 @@ void	send_signal(int PID, char c)
 		}
 		else if (bit[j] == '1')
 		{
-			if (kill(PID, SIGUSR2) == -1)
+			if (kill(pid, SIGUSR2) == -1)
 			{
 				ft_printf("Erreur lors de l'envoi du signal SIGUSR2\n");
 				free(bit);
 				return ;
 			}
 		}
-		usleep(1);
+		usleep(1000);
 		j++;
 	}
 	free(bit);
 }
-/*void	client_message(t_signal s_signal)
-{
-	if (s_signal.PID < 0)
-	{
-		ft_printf("PID non valide !");
-		return ;
-	}
-	if (!s_signal.message)
-	{
-		ft_printf("Message non valide !");
-		return ;
-	}
-	send_signal(s_signal);
-}*/
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	int	PID;
+	int	pid;
 	int	i;
 
 	if (argc != 3)
@@ -92,8 +80,8 @@ int main(int argc, char **argv)
 		return (1);
 	}
 
-	PID = atoi(argv[1]);
-	if (PID <= 0)
+	pid = ft_atoi(argv[1]);
+	if (pid <= 0)
 	{
 		ft_printf("PID invalide !\n");
 		return (1);
@@ -102,10 +90,10 @@ int main(int argc, char **argv)
 	i = 0;
 	while (argv[2][i] != '\0')
 	{
-		send_signal(PID, argv[2][i]);
+		send_signal(pid, argv[2][i]);
 		i++;
 	}
-	send_signal(PID, '\0');
+	send_signal(pid, '\0');
 
 	return (0);
 }

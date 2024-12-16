@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/12 19:47:10 by marvin            #+#    #+#              #
-#    Updated: 2024/12/14 20:07:53 by marvin           ###   ########.fr        #
+#    Updated: 2024/12/16 11:16:32 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ CFLAGS     = -Wall -Wextra -Werror
 CC         = gcc
 
 # Fichiers sources
-SRCS_SERVER = serveur.c printf/fonctions.c printf/fonctions2.c printf/ft_printf.c
-SRCS_CLIENT = client.c printf/fonctions.c printf/fonctions2.c printf/ft_printf.c
+SRCS_SERVER = serveur.c printf/fonctions.c printf/fonctions2.c printf/ft_printf.c utils.c
+SRCS_CLIENT = client.c printf/fonctions.c printf/fonctions2.c printf/ft_printf.c utils.c
 
 # Fichiers objets
 OBJ_SERVER = $(SRCS_SERVER:.c=.o)
