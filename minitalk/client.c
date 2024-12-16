@@ -63,7 +63,7 @@ void	send_signal(int pid, char c)
 				return ;
 			}
 		}
-		usleep(1000);
+		usleep(1);
 		j++;
 	}
 	free(bit);
@@ -97,3 +97,4 @@ int	main(int argc, char **argv)
 
 	return (0);
 }
+
