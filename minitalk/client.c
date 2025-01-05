@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "minitalk.h"
 
 char	*convert_binary(char c)
@@ -31,39 +30,41 @@ char	*convert_binary(char c)
 	return (bits);
 }
 
+static void	free_error(char *bit, char *msg)
+{
+	if (bit)
+		free(bit);
+	ft_printf("%s\n", msg);
+	exit(1);
+}
+
 void	send_signal(int pid, char c)
 {
 	char	*bit;
 	int		j;
 
+	if (pid > MAX_PID)
+	{
+		ft_printf("PID trop grand!\n");
+		return ;
+	}
 	bit = convert_binary(c);
 	if (!bit)
-	{
-		ft_printf("Erreur d'allocation mémoire\n");
-		return ;
-	}	
+		free_error(NULL, "Erreur d'allocation mémoire");
 	j = 0;
 	while (bit[j] != '\0')
 	{
 		if (bit[j] == '0')
 		{
 			if (kill(pid, SIGUSR1) == -1)
-			{
-				ft_printf("Erreur lors de l'envoi du signal SIGUSR1\n");
-				free(bit);
-				return ;
-			}
+				free_error(bit, "Erreur lors de l'envoi du signal SIGUSR1");
 		}
 		else if (bit[j] == '1')
 		{
 			if (kill(pid, SIGUSR2) == -1)
-			{
-				ft_printf("Erreur lors de l'envoi du signal SIGUSR2\n");
-				free(bit);
-				return ;
-			}
+				free_error(bit, "Erreur lors de l'envoi du signal SIGUSR2");
 		}
-		usleep(1000);
+		usleep(500);
 		j++;
 	}
 	free(bit);
@@ -79,14 +80,12 @@ int	main(int argc, char **argv)
 		ft_printf("Usage: %s <PID> <message>\n", argv[0]);
 		return (1);
 	}
-
 	pid = ft_atoi(argv[1]);
-	if (pid <= 0)
+	if (pid <= 0 || pid > MAX_PID)
 	{
 		ft_printf("PID invalide !\n");
 		return (1);
 	}
-
 	i = 0;
 	while (argv[2][i] != '\0')
 	{
@@ -94,6 +93,5 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	send_signal(pid, '\0');
-
 	return (0);
 }

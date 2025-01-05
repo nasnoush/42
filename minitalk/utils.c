@@ -47,21 +47,3 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	aff_message(char *str)
-{
-	int		i;
-	char	*message;
-
-	i = 0;
-	message = malloc(ft_strlen(str) + 1);
-	if (!message)
-		return ;
-	while (str[i] != '\0')
-	{
-		message[i] = str[i];
-		i++;
-	}
-	message[i] = '\0';
-	ft_printf("%s\n", message);
-	free(message);
-}
