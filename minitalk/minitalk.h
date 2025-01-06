@@ -6,9 +6,9 @@
 # include <stdlib.h>
 # include "printf/ft_printf.h"
 
-# define SIGUSR1 10
-# define SIGUSR2 12
-# define MAX_PID 99999
+# define BUFFER_SIZE 8
+/*# define SIGUSR1 10
+# define SIGUSR2 12*/
 
 typedef struct s_signal
 {

@@ -43,11 +43,6 @@ void	send_signal(int pid, char c)
 	char	*bit;
 	int		j;
 
-	if (pid > MAX_PID)
-	{
-		ft_printf("PID trop grand!\n");
-		return ;
-	}
 	bit = convert_binary(c);
 	if (!bit)
 		free_error(NULL, "Erreur d'allocation mémoire");
@@ -81,11 +76,6 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	pid = ft_atoi(argv[1]);
-	if (pid <= 0 || pid > MAX_PID)
-	{
-		ft_printf("PID invalide !\n");
-		return (1);
-	}
 	i = 0;
 	while (argv[2][i] != '\0')
 	{
