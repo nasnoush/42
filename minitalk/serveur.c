@@ -12,36 +12,113 @@
 
 #include "minitalk.h"
 
-void signal_handler(int signum)
+static void	ft_memcpy(char *dest, const char *src, size_t n)
 {
-    static unsigned char bit_recu = 0;
-    static int bit_count = 0;
+	size_t	i;
 
-    bit_recu = bit_recu << 1;
-    if (signum == SIGUSR2)
-        bit_recu |= 1;
-    bit_count++;
-    if (bit_count == 8)
-    {
-        if (bit_recu == '\0')
-            ft_printf("\n");
-        else
-            ft_printf("%c", bit_recu);
-        bit_recu = 0;
-        bit_count = 0;
-    }
+	i = 0;
+	while (i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
 }
 
-int main(void)
+static char	*expand_buffer(char *buffer, size_t *current_size, size_t data_size)
 {
-    ft_printf("\033[34mServer PID: %d\n\033[0m", getpid());
-    ft_printf("\033[30;3mEn attente d'un message..\n\033[0m");
+	char	*new_buffer;
 
-    signal(SIGUSR1, signal_handler);
-    signal(SIGUSR2, signal_handler);
-
-    while (1)
-        pause();
-
-    return (0);
+	new_buffer = malloc(*current_size + 1);
+	if (new_buffer == NULL)
+	{
+		free(buffer);
+		ft_printf("Erreur d'allocation mémoire lors de l'agrandissement\n");
+		exit(1);
+	}
+	ft_memcpy(new_buffer, buffer, data_size);
+	free(buffer);
+	*current_size += 1;
+	return (new_buffer);
 }
+
+static void	print_message(char *buffer, size_t buf_size)
+{
+	char	*final_buf;
+
+	final_buf = malloc(buf_size + 1);
+	if (!final_buf)
+	{
+		free(buffer);
+		ft_printf("Erreur d'allocation mémoire lors de l'affichage\n");
+		exit(1);
+	}
+	ft_memcpy(final_buf, buffer, buf_size);
+	final_buf[buf_size] = '\0';
+	ft_printf("%s\n", final_buf);
+	free(final_buf);
+}
+
+void	signal_handler(int signum)
+{
+	static unsigned char	bit_recu = 0;
+	static int				bit_count = 0;
+	static char				*buffer = NULL;
+	static size_t			buf_size = 0;
+	static size_t			taille_buff = 1;
+
+	if (!buffer)
+		buffer = malloc(taille_buff);
+	if (!buffer)
+	{
+		ft_printf("Erreur d'allocation mémoire initiale\n");
+		exit(1);
+	}
+	bit_recu = bit_recu << 1 | (signum == SIGUSR2);
+	bit_count++;
+	if (bit_count == 8)
+	{
+		if (bit_recu == '\0')
+		{
+			print_message(buffer, buf_size);
+			free(buffer);
+			buffer = malloc(1);
+			taille_buff = 1;
+			buf_size = 0;
+		}
+		else
+		{
+			if (buf_size + 1 >= taille_buff)
+				buffer = expand_buffer(buffer, &taille_buff, buf_size);
+			buffer[buf_size++] = bit_recu;
+		}
+		bit_recu = 0;
+		bit_count = 0;
+	}
+}
+
+int	main(void)
+{
+	struct sigaction sa;
+
+	ft_printf("\033[34mServer PID: %d\n\033[0m", getpid());
+	ft_printf("\033[30;3mEn attente d'un message...\n\033[0m");
+
+	sa.sa_handler = signal_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+
+	if (sigaction(SIGUSR1, &sa, NULL) == -1 || sigaction(SIGUSR2, &sa, NULL) == -1)
+	{
+		ft_printf("Erreur lors de l'installation des handlers de signal\n");
+		return (1);
+	}
+
+	while (1)
+		pause();
+
+	return (0);
+}
+
+// pour tester for i in {1..50}; do ./client 4520 "Test $i : $(date) - Random: $RANDOM $RANDOM $RANDOM"; sleep 0.1; done
+
+
