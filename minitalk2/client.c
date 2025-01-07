@@ -59,7 +59,7 @@ void	send_signal(int pid, char c)
 			if (kill(pid, SIGUSR2) == -1)
 				free_error(bit, "Erreur lors de l'envoi du signal SIGUSR2");
 		}
-		usleep(600);
+		usleep(500);
 		j++;
 	}
 	free(bit);

@@ -46,6 +46,18 @@ static void	print_message(char *buffer, size_t buf_size)
 	free(final_buf);
 }
 
+void	init_buffer(char **buffer, size_t *taille_buff)
+{
+	if (!(*buffer))
+		*buffer = malloc(*taille_buff);
+	if (!(*buffer))
+	{
+		ft_printf("Erreur d'allocation mémoire initiale\n");
+		exit(1);
+	}
+}
+
+
 void	signal_handler(int signum)
 {
 	static unsigned char	bit_recu = 0;
@@ -54,13 +66,7 @@ void	signal_handler(int signum)
 	static size_t			buf_size = 0;
 	static size_t			taille_buff = 1;
 
-	if (!buffer)
-		buffer = malloc(taille_buff);
-	if (!buffer)
-	{
-		ft_printf("Erreur d'allocation mémoire initiale\n");
-		exit(1);
-	}
+	init_buffer(&buffer, &taille_buff);
 	bit_recu = bit_recu << 1 | (signum == SIGUSR2);
 	bit_count++;
 	if (bit_count == 8)
