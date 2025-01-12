@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:12:21 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/09 11:20:31 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/12 14:07:10 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,3 @@ int ft_atoi(char *str)
 	return (r * s);
 }
 
-int main ()
-{
-	char *str = "    --1545";
-	printf("%d\n", ft_atoi(str));
-	return (0);
-}

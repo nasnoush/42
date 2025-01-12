@@ -3,32 +3,130 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/09 14:08:27 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/12 10:35:25 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-/*t_node	*sa(t_node *head, int value)
+void	stock_pile(int argc, char **argv, t_node **head)
 {
-	t_node *pile_a;
+	t_node *tmp;
+	int i;
+
+	*head = malloc(sizeof (t_node));
+	if (head == NULL)
+		return ;
+	(*head)->value = atoi(argv[1]);
+	(*head)->next = NULL;
+	tmp = *head;
+	i = 2;
+	while (i < argc)
+	{
+		tmp->next = malloc(sizeof(t_node));
+		if (tmp->next == NULL)
+			return ;
+		tmp = tmp->next;
+		tmp->value = atoi(argv[i]);
+		tmp->next = NULL;
+		i++;
+	}
+}
+
+t_node *push(t_node **head, int value)
+{
+	t_node *new_node = NULL;
+
+	new_node = malloc(sizeof(t_node));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->value = value;
+	new_node->next = *head;
+	*head = new_node;
+
+	return (*head);
+}
+
+void	swap_a(t_node *pile_a)
+{
+	int tmp;
+
+	if (pile_a == NULL || pile_a->next == NULL)
+		return ;
+	tmp = pile_a->value;
+	pile_a->value = pile_a->next->value;
+	pile_a->next->value = tmp;
+}
+
+
+void print_pile(t_node *head) 
+{
+    while (head) 
+	{
+        printf("%d ", head->value);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+void	swap_b(t_node *pile_b)
+{
+	int	tmp;
+
+	if (pile_b == NULL || pile_b->next == NULL)
+		return ;
+	tmp = pile_b->value;
+	pile_b->value = pile_b->next->value;
+	pile_b->next->value = tmp; 
+}
+
+void	ss(t_node **pile_a, t_node **pile_b)
+{
+	int	tmp;
+	int	tmp2;
+
+	if ((*pile_a) == NULL || (*pile_a)->next == NULL || (*pile_b) ==  NULL || (*pile_b)->next == NULL)
+		return ;
+
+	tmp = (*pile_a)->value;
+	(*pile_a)->value = (*pile_a)->next->value;
+	(*pile_a)->next->value = tmp;
+
+	tmp2 = (*pile_b)->value;
+	(*pile_b)->value = (*pile_b)->next->value;
+	(*pile_b)->next->value = tmp2;
 	
-	pile_a = malloc(sizeof(t_node));
-	
-	pile_a->value = value;
-	pile_a->next = head;
-	
-	return (pile_a);
+}
+
+
+
+
+/*int main(int argc, char **argv)
+{
+	int	i;
+
+	i = 0;
+	t_node *pile_a = NULL;
+	t_node *pile_b = NULL;
+
+	push(&pile_a, atoi(argv[1]));
+	push(&pile_b, atoi(argv[2]));
 }*/
 
 
 
 
-int main (int argc, char **argv)
+
+
+
+
+
+
+
+/*int main (int argc, char **argv)
 {
 	t_node *head;
 	t_node *tmp;
@@ -60,18 +158,7 @@ int main (int argc, char **argv)
 		i++;
 	}
 	return (0);
-}
+}*/
 
 
 
-
-7 2 9 6 3 12 41 20 32
-
-pile a = 7 2 9
-pile a = 2 7 9
-pile a = 2 7 9 6 3 12
-2 7 6 9 3 12
-2 6 7 9 3 12
-2 6 7 3 9 12
-2637912
-236

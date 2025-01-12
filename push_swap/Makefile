@@ -3,25 +3,35 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
+#    By: nas <nas@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:06:12 by nadahman          #+#    #+#              #
-#    Updated: 2025/01/09 11:40:26 by nadahman         ###   ########.fr        #
+#    Updated: 2025/01/12 10:36:05 by nas              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CFLAGS = -Wall -Wextra -Werror
 CC = gcc
+OBJ  = $(SRCS:.c=.o)
 
-SRCS = printf/ft_printf.c printf/fonctions.c printf/fonctions2.c functions_moove.c main.c
+SRCS = printf/ft_printf.c printf/fonctions.c printf/fonctions2.c functions_moove.c main.c functions_moove2.c
 
 all: $(NAME)
 
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+
 clean:
-    rm -f $(SRCS)
-    
-re: fclean all
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re:
+	fclean all
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+.PHONY: all clean fclean re
