@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 10:25:54 by nas               #+#    #+#             */
-/*   Updated: 2025/01/13 10:52:14 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:34:37 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,6 @@ void	push_b(t_node **pile_a, t_node **pile_b)
 	tmp = (*pile_a);
 	*pile_a = (*pile_a)->next;
 	free(tmp);
-}
-int	count_node(t_node *pile)
-{
-	int i;
-
-	i = 0;
-	while (pile != NULL)
-	{
-		pile = pile->next;
-		i++;
-	}
-	return (i);
 }
 
 void	rotate_a(t_node **pile_a)
@@ -94,11 +82,6 @@ void	rotate_b(t_node **pile_b)
 	
 	tmp->next = NULL;
 }
-void	rr(t_node **pile_a, t_node **pile_b)
-{
-	rotate_a(pile_a);
-	rotate_b(pile_b);
-}
 void	reverse_rotate_a(t_node **pile_a)
 {
 	t_node *cur;
@@ -120,35 +103,11 @@ void	reverse_rotate_a(t_node **pile_a)
 	*pile_a = cur;
 }
 
-void	reverse_rotate_b(t_node **pile_b)
-{
-	t_node *tmp;
-	t_node *save;
-	t_node *cur;
-
-	if (*pile_b == NULL || (*pile_b)->next == NULL)
-		return ;
-	
-	save = *pile_b;
-	cur = *pile_b;
-	while (cur->next != NULL)
-	{
-		tmp = cur;
-		cur = cur->next;
-	}
-	tmp->next = NULL;
-	cur->next = save;
-	*pile_b = cur;
-}
-
-void rrr(t_node **pile_a, t_node **pile_b)
-{
-	reverse_rotate_a(pile_a);
-	reverse_rotate_b(pile_b);
-}
 
 
-int main()
+
+
+/*int main()
 {
 	t_node *pile_a = NULL;
 	t_node *pile_b = NULL;
@@ -176,4 +135,4 @@ int main()
 	printf("Pile B apres : ");
 	print_pile(pile_b);
 
-}
+}*/

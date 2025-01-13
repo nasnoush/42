@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:53:50 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/13 14:05:06 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:52:47 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_error(char **argv)
 		j = 0;
 		while (argv[i][j])
 		{
-			if (!argv[i][j] >= '0' && argv[i][j] <= '9')
+			if (!(argv[i][j] >= '0' && argv[i][j] <= '9') && argv[i][j] != '-')
 			{
 				ft_printf("Error\n");
 				exit (1);
@@ -63,15 +63,5 @@ void	check_all(char **argv)
 }
 
 
-int	main(int argc, char **argv)
-{
-	if (argc < 3)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
-	check_all(argv);
-	return (0);
-}
 
 

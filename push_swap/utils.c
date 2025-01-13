@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:12:21 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/13 14:04:14 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/13 19:41:24 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ long int ft_atoi(char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		if (r < INT_MIN || r  > INT_MAX)
+		r = r * 10 + (str[i] - 48);
+		if ((r * s) < INT_MIN || (r * s) > INT_MAX)
 		{
 			ft_printf("Error\n");
 			exit (1);
 		}
-		r = r * 10 + (str[i] - 48);
 		i++;
 	}
 	return (r * s);
 }
-

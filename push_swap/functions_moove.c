@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/12 10:35:25 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/13 19:31:45 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,6 @@ void	swap_a(t_node *pile_a)
 	tmp = pile_a->value;
 	pile_a->value = pile_a->next->value;
 	pile_a->next->value = tmp;
-}
-
-
-void print_pile(t_node *head) 
-{
-    while (head) 
-	{
-        printf("%d ", head->value);
-        head = head->next;
-    }
-    printf("\n");
 }
 
 void	swap_b(t_node *pile_b)
