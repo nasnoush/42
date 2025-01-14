@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:30:52 by nas               #+#    #+#             */
-/*   Updated: 2025/01/13 19:35:25 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/14 12:16:41 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	count_node(t_node *pile)
 
 void print_pile(t_node *head) 
 {
-    while (head) 
+    while (head != NULL) 
 	{
-        printf("%d ", head->value);
+        ft_printf("%d ", head->value);
         head = head->next;
     }
-    printf("\n");
+    ft_printf("\n");
 }
 
 void rrr(t_node **pile_a, t_node **pile_b)

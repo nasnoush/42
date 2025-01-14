@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 10:25:54 by nas               #+#    #+#             */
-/*   Updated: 2025/01/13 19:34:37 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/14 13:39:44 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	reverse_rotate_a(t_node **pile_a)
 	printf("Pile B : ");
 	print_pile(pile_b);
 
-	rrr(&pile_a, &pile_b);
+	swap_a(&pile_a);
 
 	printf("Pile A apres : ");
 	print_pile(pile_a);

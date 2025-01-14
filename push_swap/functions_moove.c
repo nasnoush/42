@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/13 19:31:45 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/14 13:50:41 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	stock_pile(int argc, char **argv, t_node **head)
 	int i;
 
 	*head = malloc(sizeof (t_node));
-	if (head == NULL)
+	if (*head == NULL)
 		return ;
 	(*head)->value = atoi(argv[1]);
 	(*head)->next = NULL;
@@ -50,15 +50,15 @@ t_node *push(t_node **head, int value)
 	return (*head);
 }
 
-void	swap_a(t_node *pile_a)
+void	swap_a(t_node **pile_a)
 {
 	int tmp;
 
-	if (pile_a == NULL || pile_a->next == NULL)
+	if (pile_a == NULL || (*pile_a)->next == NULL)
 		return ;
-	tmp = pile_a->value;
-	pile_a->value = pile_a->next->value;
-	pile_a->next->value = tmp;
+	tmp = (*pile_a)->value;
+	(*pile_a)->value = (*pile_a)->next->value;
+	(*pile_a)->next->value = tmp;
 }
 
 void	swap_b(t_node *pile_b)
@@ -91,7 +91,35 @@ void	ss(t_node **pile_a, t_node **pile_b)
 }
 
 
+/*int main()
+{
+	t_node *pile_a = NULL;
+	t_node *pile_b = NULL;
 
+
+	push(&pile_a, 10);
+	push(&pile_a, 20);
+	push(&pile_a, 30);
+	push(&pile_a, 40);
+	
+	push(&pile_b, 90);
+	push(&pile_b, 70);
+	push(&pile_b, 50);
+	push(&pile_b, 60);
+	
+	printf("Pile A : ");
+	print_pile(pile_a);
+	printf("Pile B : ");
+	print_pile(pile_b);
+
+	swap_a(pile_a);
+
+	printf("Pile A apres : ");
+	print_pile(pile_a);
+	printf("Pile B apres : ");
+	print_pile(pile_b);
+
+}*/
 
 /*int main(int argc, char **argv)
 {
