@@ -6,12 +6,12 @@
 #    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:06:12 by nadahman          #+#    #+#              #
-#    Updated: 2025/01/14 12:12:49 by nadahman         ###   ########.fr        #
+#    Updated: 2025/01/15 11:33:15 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-CFLAGS = -Wall -Wextra -Werror -Iprintf
+CFLAGS = -Wall -Wextra -Werror -Iprintf -g3
 CC = gcc
 OBJ  = $(SRCS:.c=.o)
 
