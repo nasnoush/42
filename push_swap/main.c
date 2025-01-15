@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:06:07 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/15 13:58:41 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/15 19:21:28 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	}
 	check_all(argv);
 	stock_pile(argc, argv, &pile_a);
-	test_sort(&pile_a, &pile_b);
+	trois(&pile_a);
 	ft_printf("Pile A : ");
 	print_pile(pile_a);
 	ft_printf("Pile B : ");
