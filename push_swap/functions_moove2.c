@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 10:25:54 by nas               #+#    #+#             */
-/*   Updated: 2025/01/14 13:39:44 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:28:02 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	push_a(t_node **pile_a, t_node **pile_b)
 	
 	(*pile_b) = (*pile_b)->next;
 	free(tmp);
+	ft_printf("pa\n");
 	
 }
 void	push_b(t_node **pile_a, t_node **pile_b)
@@ -39,6 +40,8 @@ void	push_b(t_node **pile_a, t_node **pile_b)
 	tmp = (*pile_a);
 	*pile_a = (*pile_a)->next;
 	free(tmp);
+	ft_printf("pb\n");
+
 }
 
 void	rotate_a(t_node **pile_a)
@@ -59,7 +62,7 @@ void	rotate_a(t_node **pile_a)
 	cur->next = tmp;
 
 	tmp->next = NULL;
-	
+	ft_printf("ra\n");
 }
 
 void	rotate_b(t_node **pile_b)
@@ -81,6 +84,7 @@ void	rotate_b(t_node **pile_b)
 	cur->next = tmp;
 	
 	tmp->next = NULL;
+	ft_printf("rb\n");
 }
 void	reverse_rotate_a(t_node **pile_a)
 {
@@ -101,6 +105,8 @@ void	reverse_rotate_a(t_node **pile_a)
 	tmp->next = NULL;
 	cur->next = save;
 	*pile_a = cur;
+	
+	ft_printf("rra\n");
 }
 
 

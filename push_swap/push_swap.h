@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/16 10:12:25 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:32:26 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	    reverse_rotate_a(t_node **pile_a);
 void	    test_sort(t_node **pile_a, t_node **pile_b);
 void	trois(t_node **pile_a);
 void	cinq(t_node **pile_a, t_node **pile_b);
+int	count_moove(char *str);
 
 
 

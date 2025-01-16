@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:12:21 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/14 13:32:48 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:35:01 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long int ft_atoi(char *str)
 	int	i;
 	long int	r;
 	int	s;
-	
+
 	i = 0;
 	r = 0;
 	s = 1;
@@ -41,4 +41,5 @@ long int ft_atoi(char *str)
 	}
 	return (r * s);
 }
+
 

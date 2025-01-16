@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:30:52 by nas               #+#    #+#             */
-/*   Updated: 2025/01/15 12:19:01 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:28:42 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,15 @@ void rrr(t_node **pile_a, t_node **pile_b)
 {
 	reverse_rotate_a(pile_a);
 	reverse_rotate_b(pile_b);
+	
+	ft_printf("rrr\n");
 }
 
 void	rr(t_node **pile_a, t_node **pile_b)
 {
 	rotate_a(pile_a);
 	rotate_b(pile_b);
+	ft_printf("rr\n");
 }
 void	reverse_rotate_b(t_node **pile_b)
 {
@@ -65,4 +68,5 @@ void	reverse_rotate_b(t_node **pile_b)
 	tmp->next = NULL;
 	cur->next = save;
 	*pile_b = cur;
+	ft_printf("rrb\n");
 }

@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:53:50 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/14 12:49:16 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:02:31 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_double(char **argv)
 {
 	int i;
 	int j;
-	
+
 	i = 1;
 
 	while (argv[i])

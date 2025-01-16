@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/14 13:50:41 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:26:47 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	stock_pile(int argc, char **argv, t_node **head)
 	}
 }
 
-t_node *push(t_node **head, int value)
+t_node	*push(t_node **head, int value)
 {
-	t_node *new_node = NULL;
+	t_node	*new_node = NULL;
 
 	new_node = malloc(sizeof(t_node));
 	if (new_node == NULL)
@@ -59,6 +59,8 @@ void	swap_a(t_node **pile_a)
 	tmp = (*pile_a)->value;
 	(*pile_a)->value = (*pile_a)->next->value;
 	(*pile_a)->next->value = tmp;
+	
+	ft_printf("sa\n");
 }
 
 void	swap_b(t_node *pile_b)
@@ -69,7 +71,8 @@ void	swap_b(t_node *pile_b)
 		return ;
 	tmp = pile_b->value;
 	pile_b->value = pile_b->next->value;
-	pile_b->next->value = tmp; 
+	pile_b->next->value = tmp;
+	ft_printf("sb\n");
 }
 
 void	ss(t_node **pile_a, t_node **pile_b)
@@ -87,7 +90,7 @@ void	ss(t_node **pile_a, t_node **pile_b)
 	tmp2 = (*pile_b)->value;
 	(*pile_b)->value = (*pile_b)->next->value;
 	(*pile_b)->next->value = tmp2;
-	
+	ft_printf("ss\n");
 }
 
 

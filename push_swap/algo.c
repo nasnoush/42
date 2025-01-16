@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:18:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/16 11:29:19 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/16 12:53:43 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	cinq(t_node **pile_a, t_node **pile_b)
 		rotate_a(pile_a);
 	}
 }
-	
+
 
 // 	A	B
 // 0/	2
