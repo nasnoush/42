@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:18:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/15 20:15:44 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/16 11:29:19 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,27 +97,62 @@ void	trois(t_node **pile_a)
 		reverse_rotate_a(pile_a);
 	}
 }
+
+void	cinq(t_node **pile_a, t_node **pile_b)
+{
+	push_b(pile_a, pile_b);
+	push_b(pile_a, pile_b);
+	trois(pile_a);
+	if ((*pile_b)->value > (*pile_b)->next->value)
+	{
+		swap_b(*pile_b);
+	}
+	push_a(pile_a, pile_b);
+	while ((*pile_a)->value > (*pile_a)->next->value)
+	{
+		rotate_a(pile_a);
+	}
+	push_a(pile_a, pile_b);
+	while ((*pile_a)->value > (*pile_a)->next->value)
+	{
+		rotate_a(pile_a);
+	}
+}
 	
 
+// 	A	B
+// 0/	2
+// 	3
+// 	4
+// 	5
+// 	1
 
-// A	B
-// -	-
-// 5	
-// 6
-// 3
-// 7
-// 2
+// 1/	4	2
+// 	5	3
+// 	1
+	
+// 2/	1	2
+// 	4	3
+// 	5
+	
+// 3/	2	3
+// 	1
+// 	4
+// 	5
 
-// A	B
-// -	-
-// 5	3
-// 6	2
-// 7
-
-// // envoyer les < du pivot dans A
-// A	B
-// -
-// 2	-
-// 5	3
-// 6
-// 7
+// 4/	1	3
+// 	4
+// 	5
+// 	2
+	
+// 5/	3
+// 	1
+// 	4
+// 	5
+// 	2
+	
+// 6/	1
+// 	4
+// 	5
+// 	2
+// 	3

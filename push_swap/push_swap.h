@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/15 19:21:09 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/16 10:12:25 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	    rotate_b(t_node **pile_b);
 void	    reverse_rotate_a(t_node **pile_a);
 void	    test_sort(t_node **pile_a, t_node **pile_b);
 void	trois(t_node **pile_a);
+void	cinq(t_node **pile_a, t_node **pile_b);
 
 
 
