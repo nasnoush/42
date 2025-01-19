@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/16 13:26:47 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:31:05 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,93 +92,3 @@ void	ss(t_node **pile_a, t_node **pile_b)
 	(*pile_b)->next->value = tmp2;
 	ft_printf("ss\n");
 }
-
-
-/*int main()
-{
-	t_node *pile_a = NULL;
-	t_node *pile_b = NULL;
-
-
-	push(&pile_a, 10);
-	push(&pile_a, 20);
-	push(&pile_a, 30);
-	push(&pile_a, 40);
-	
-	push(&pile_b, 90);
-	push(&pile_b, 70);
-	push(&pile_b, 50);
-	push(&pile_b, 60);
-	
-	printf("Pile A : ");
-	print_pile(pile_a);
-	printf("Pile B : ");
-	print_pile(pile_b);
-
-	swap_a(pile_a);
-
-	printf("Pile A apres : ");
-	print_pile(pile_a);
-	printf("Pile B apres : ");
-	print_pile(pile_b);
-
-}*/
-
-/*int main(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	t_node *pile_a = NULL;
-	t_node *pile_b = NULL;
-
-	push(&pile_a, atoi(argv[1]));
-	push(&pile_b, atoi(argv[2]));
-}*/
-
-
-
-
-
-
-
-
-
-
-
-/*int main (int argc, char **argv)
-{
-	t_node *head;
-	t_node *tmp;
-	int nbr_val;
-	int i;
-	
-	head = NULL;
-	tmp = NULL;
-	i = 2;
-	head = malloc(sizeof(t_node));
-	head->value = atoi(argv[1]);
-	head->next = NULL;
-	tmp = head;
-	nbr_val = argc - 1;
-	while (i < argc)
-	{
-		head->next = malloc(sizeof(t_node));
-		head = head->next;
-		head->value = atoi(argv[i]);
-		head->next = NULL;
-		i++;
-	}
-	i = 0;
-	head = tmp;
-	while (i < nbr_val)
-	{
-		printf("%i ", head->value);
-		head = head->next;
-		i++;
-	}
-	return (0);
-}*/
-
-
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 10:25:54 by nas               #+#    #+#             */
-/*   Updated: 2025/01/16 13:28:02 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:31:23 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,37 +108,3 @@ void	reverse_rotate_a(t_node **pile_a)
 	
 	ft_printf("rra\n");
 }
-
-
-
-
-
-/*int main()
-{
-	t_node *pile_a = NULL;
-	t_node *pile_b = NULL;
-
-
-	push(&pile_a, 10);
-	push(&pile_a, 20);
-	push(&pile_a, 30);
-	push(&pile_a, 40);
-	
-	push(&pile_b, 90);
-	push(&pile_b, 70);
-	push(&pile_b, 50);
-	push(&pile_b, 60);
-	
-	printf("Pile A : ");
-	print_pile(pile_a);
-	printf("Pile B : ");
-	print_pile(pile_b);
-
-	swap_a(&pile_a);
-
-	printf("Pile A apres : ");
-	print_pile(pile_a);
-	printf("Pile B apres : ");
-	print_pile(pile_b);
-
-}*/

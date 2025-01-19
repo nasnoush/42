@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:18:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/16 12:53:43 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/19 11:26:46 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void	trois(t_node **pile_a)
 	int	b;
 	int	c;
 
+	if (!pile_a || !(*pile_a) || !(*pile_a)->next || !(*pile_a)->next->next)
+        return;
+	
 	a = (*pile_a)->value;
 	b = (*pile_a)->next->value;
 	c = (*pile_a)->next->next->value;
@@ -98,61 +101,76 @@ void	trois(t_node **pile_a)
 	}
 }
 
+// void	cinq(t_node **pile_a, t_node **pile_b)
+// {
+// 	push_b(pile_a, pile_b);
+// 	push_b(pile_a, pile_b);
+// 	trois(pile_a);
+// 	if ((*pile_b)->value > (*pile_b)->next->value)
+// 	{
+// 		swap_b(*pile_b);
+// 	}
+// 	push_a(pile_a, pile_b);
+// 	while ((*pile_a)->value > (*pile_a)->next->value)
+// 	{
+// 		rotate_a(pile_a);
+// 	}
+// 	push_a(pile_a, pile_b);
+// 	while ((*pile_a)->value > (*pile_a)->next->value)
+// 	{
+// 		rotate_a(pile_a);
+// 	}
+// }
+
+
+
 void	cinq(t_node **pile_a, t_node **pile_b)
 {
 	push_b(pile_a, pile_b);
 	push_b(pile_a, pile_b);
 	trois(pile_a);
-	if ((*pile_b)->value > (*pile_b)->next->value)
-	{
-		swap_b(*pile_b);
-	}
 	push_a(pile_a, pile_b);
-	while ((*pile_a)->value > (*pile_a)->next->value)
+	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value < (*pile_a)->next->next->value)
+	{
+		swap_a(pile_a);
+	}
+	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value > (*pile_a)->next->next->value && (*pile_a)->value > (*pile_a)->next->next->next->value)
 	{
 		rotate_a(pile_a);
 	}
 	push_a(pile_a, pile_b);
-	while ((*pile_a)->value > (*pile_a)->next->value)
+	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value < (*pile_a)->next->next->value && (*pile_a)->value < (*pile_a)->next->next->next->value)
+	{
+		swap_a(pile_a);
+	}
+	if ((*pile_a)->value < (*pile_a)->next->value && (*pile_a)->next->value < (*pile_a)->next->next->value && (*pile_a)->next->next->value < (*pile_a)->next->next->next->value && (*pile_a)->next->next->next->value > (*pile_a)->next->next->next->next->value)
+	{
+		rotate_a(pile_a);
+		while ((*pile_a)->value > (*pile_a)->next->value)
+		{
+			rotate_a(pile_a);
+		}
+		reverse_rotate_a(pile_a);
+		reverse_rotate_a(pile_a);
+		swap_a(pile_a);
+		rotate_a(pile_a);
+		rotate_a(pile_a);
+		
+		
+	}
+	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value > (*pile_a)->next->next->value && (*pile_a)->value > (*pile_a)->next->next->next->value && (*pile_a)->value > (*pile_a)->next->next->next->next->value)
 	{
 		rotate_a(pile_a);
 	}
+	
+	// while ((*pile_a)->value > (*pile_a)->next->value)
+	// {
+	// 	rotate_a(pile_a);
+	// }
+	// reverse_rotate_a(pile_a);
+	// reverse_rotate_a(pile_a);
+	// swap_a(pile_a);
+	// rotate_a(pile_a);
+	// rotate_a(pile_a);
+	
 }
-
-
-// 	A	B
-// 0/	2
-// 	3
-// 	4
-// 	5
-// 	1
-
-// 1/	4	2
-// 	5	3
-// 	1
-	
-// 2/	1	2
-// 	4	3
-// 	5
-	
-// 3/	2	3
-// 	1
-// 	4
-// 	5
-
-// 4/	1	3
-// 	4
-// 	5
-// 	2
-	
-// 5/	3
-// 	1
-// 	4
-// 	5
-// 	2
-	
-// 6/	1
-// 	4
-// 	5
-// 	2
-// 	3

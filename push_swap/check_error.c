@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 10:53:50 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/16 13:02:31 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/19 13:30:29 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void    free_pile(t_node **head)
+{
+    t_node *tmp;
+    
+    while (*head != NULL)
+    {
+        tmp = *head;
+        *head = (*head)->next;
+        free(tmp);
+    }
+    *head = NULL;
+}
 
 void check_error(char **argv)
 {
@@ -71,7 +84,3 @@ void	check_all(char **argv)
 		check_error(argv);
 		check_double(argv);
 }
-
-
-
-

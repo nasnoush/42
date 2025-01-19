@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/16 13:32:26 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/19 15:52:23 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ typedef struct  s_node{
     int             value;
     struct s_node   *next;
 }t_node;
+
+typedef struct s_chunks{
+    int max;
+    int min;
+    struct s_chunks *pre;
+    struct s_chunks *next;
+}t_chunks;
+
+
 
 void        stock_pile(int argc, char **argv, t_node **head);
 t_node      *push(t_node **head, int value);
@@ -44,9 +53,26 @@ void	    rotate_a(t_node **pile_a);
 void	    rotate_b(t_node **pile_b);
 void	    reverse_rotate_a(t_node **pile_a);
 void	    test_sort(t_node **pile_a, t_node **pile_b);
-void	trois(t_node **pile_a);
-void	cinq(t_node **pile_a, t_node **pile_b);
-int	count_moove(char *str);
+void	    trois(t_node **pile_a);
+void	    cinq(t_node **pile_a, t_node **pile_b);
+int         count_moove(char *str);
+int	        count_int(t_node **pile_a);
+int	        search_max(t_node **pile_a);
+int	        search_min(t_node **pile_a);
+void	    create_chunks(t_chunks **chunks, int min, int max, int nb_chunks);
+void	    trie_chunks(t_node **pile_a, t_node **pile_b, t_chunks **chunks);
+void	    add_chunks(t_chunks **chunks, int cur_min, int cur_max);
+void        print_chunks(t_chunks *chunks);
+void	    trie_to_pile_b(t_node **pile_a, t_node **pile_b, t_chunks **chunks);
+void	    trie_to_pile_a(t_node **pile_a, t_node **pile_b);
+void	    verif_trie(t_node **pile_a);
+void        free_pile(t_node **head);
+void        last_verif(t_node **pile_a);
+void        verif_trie(t_node **pile_a);
+int	        verif_pile_trie(t_node **pile_a);
+int	        found_pos_nbr(t_node **head, int value);
+void	    calcul_nbr_moove(t_node **head, int value);
+void        free_chunks(t_chunks **chunks);
 
 
 
