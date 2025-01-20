@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_chunks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:47:13 by nas               #+#    #+#             */
-/*   Updated: 2025/01/20 13:33:32 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:24:55 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	calcul_nbr_moove(t_node **head, int value)
 		return ;
 	cout_ra = pos;
 	cout_rra = size - pos;
-	
 	if (cout_ra <= cout_rra)
 	{
 		while (cout_ra > 0)
@@ -150,7 +149,9 @@ void	trie_chunks(t_node **pile_a, t_node **pile_b, t_chunks **chunks)
 	}
 	else if (nbr_element == 3)
 		trois(pile_a);
-	else if (nbr_element <= 100 && nbr_element > 3)
+	else if (nbr_element == 5)
+		cinq(pile_a, pile_b);
+	else if (nbr_element <= 100 && nbr_element > 5)
 	{
 		create_chunks(chunks, min, max, 5);
 		// print_chunks(*chunks);

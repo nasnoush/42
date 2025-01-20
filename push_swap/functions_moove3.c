@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:30:52 by nas               #+#    #+#             */
-/*   Updated: 2025/01/16 13:28:42 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:28:18 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void rrr(t_node **pile_a, t_node **pile_b)
 {
 	reverse_rotate_a(pile_a);
 	reverse_rotate_b(pile_b);
-	
 	ft_printf("rrr\n");
 }
 
@@ -57,7 +56,6 @@ void	reverse_rotate_b(t_node **pile_b)
 
 	if (*pile_b == NULL || (*pile_b)->next == NULL)
 		return ;
-	
 	save = *pile_b;
 	cur = *pile_b;
 	while (cur->next != NULL)

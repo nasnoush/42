@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 10:06:07 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/20 14:20:51 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:28:47 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int main(int argc, char **argv)
             ft_printf("Error\n");
             exit(1);
         }
-		
         check_all(args);
         stock_pile(size, args, &pile_a);
         free_split(args);
@@ -73,11 +72,10 @@ int main(int argc, char **argv)
     	verif_trie(&pile_a);
    		last_verif(&pile_a);
 	}
-	// ft_printf("Pile A : ");
-	// print_pile(pile_a);
-	// ft_printf("Pile B : ");
-	// print_pile(pile_b);
-
+	ft_printf("Pile A : ");
+	print_pile(pile_a);
+	ft_printf("Pile B : ");
+	print_pile(pile_b);
     free_pile(&pile_a);
     free_chunks(&chunks);
     free_pile(&pile_b);

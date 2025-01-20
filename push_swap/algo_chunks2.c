@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 13:34:47 by nas               #+#    #+#             */
-/*   Updated: 2025/01/19 13:36:03 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/20 19:25:30 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void verif_trie(t_node **pile_a)
 
     if (verif_pile_trie(pile_a) == 1)
         return;
-
     min = search_min(pile_a);
     calcul_nbr_moove(pile_a, min);
 }
@@ -54,10 +53,9 @@ void verif_trie(t_node **pile_a)
 void last_verif(t_node **pile_a)
 {
 	int min;
-	
+
 	if (verif_pile_trie(pile_a) == 1)
 		return ;
-
 	min = search_min(pile_a);
 	calcul_nbr_moove(pile_a, min);
 }

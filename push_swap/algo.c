@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 10:18:20 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/19 11:26:46 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/20 19:25:55 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	test_sort(t_node **pile_a, t_node **pile_b)
 
 	if (*pile_a == NULL || (*pile_a)->next == NULL)
 		return ;
-	
 	cur = *pile_a;
 	pivot = (*pile_a)->value;
 	while (cur->next != NULL)
@@ -54,13 +53,9 @@ void	test_sort(t_node **pile_a, t_node **pile_b)
 			cur = cur->next;
 	}
     while (*pile_b != NULL)
-    {
         push_a(pile_a, pile_b);
-    }
     if (*pile_a != NULL)
-	{
         test_sort(pile_a, pile_b);
-	}
 }
 
 
@@ -72,15 +67,11 @@ void	trois(t_node **pile_a)
 
 	if (!pile_a || !(*pile_a) || !(*pile_a)->next || !(*pile_a)->next->next)
         return;
-	
 	a = (*pile_a)->value;
 	b = (*pile_a)->next->value;
 	c = (*pile_a)->next->next->value;
-	
 	if (a > b && b < c && a < c)
-	{
 		swap_a(pile_a);
-	}
 	else if (a < b && b > c && a < c)
 	{
 		swap_a(pile_a);
@@ -92,85 +83,46 @@ void	trois(t_node **pile_a)
 		reverse_rotate_a(pile_a);
 	}
 	else if (a > b && b < c && a > c)
-	{
 		rotate_a(pile_a);
-	}
 	else if (a < b && b > c && a > c)
-	{
 		reverse_rotate_a(pile_a);
-	}
 }
 
-// void	cinq(t_node **pile_a, t_node **pile_b)
-// {
-// 	push_b(pile_a, pile_b);
-// 	push_b(pile_a, pile_b);
-// 	trois(pile_a);
-// 	if ((*pile_b)->value > (*pile_b)->next->value)
-// 	{
-// 		swap_b(*pile_b);
-// 	}
-// 	push_a(pile_a, pile_b);
-// 	while ((*pile_a)->value > (*pile_a)->next->value)
-// 	{
-// 		rotate_a(pile_a);
-// 	}
-// 	push_a(pile_a, pile_b);
-// 	while ((*pile_a)->value > (*pile_a)->next->value)
-// 	{
-// 		rotate_a(pile_a);
-// 	}
-// }
-
-
-
-void	cinq(t_node **pile_a, t_node **pile_b)
+void cinq(t_node **pile_a, t_node **pile_b)
 {
-	push_b(pile_a, pile_b);
-	push_b(pile_a, pile_b);
-	trois(pile_a);
-	push_a(pile_a, pile_b);
-	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value < (*pile_a)->next->next->value)
-	{
-		swap_a(pile_a);
-	}
-	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value > (*pile_a)->next->next->value && (*pile_a)->value > (*pile_a)->next->next->next->value)
-	{
-		rotate_a(pile_a);
-	}
-	push_a(pile_a, pile_b);
-	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value < (*pile_a)->next->next->value && (*pile_a)->value < (*pile_a)->next->next->next->value)
-	{
-		swap_a(pile_a);
-	}
-	if ((*pile_a)->value < (*pile_a)->next->value && (*pile_a)->next->value < (*pile_a)->next->next->value && (*pile_a)->next->next->value < (*pile_a)->next->next->next->value && (*pile_a)->next->next->next->value > (*pile_a)->next->next->next->next->value)
-	{
-		rotate_a(pile_a);
-		while ((*pile_a)->value > (*pile_a)->next->value)
-		{
-			rotate_a(pile_a);
-		}
-		reverse_rotate_a(pile_a);
-		reverse_rotate_a(pile_a);
-		swap_a(pile_a);
-		rotate_a(pile_a);
-		rotate_a(pile_a);
-		
-		
-	}
-	if ((*pile_a)->value > (*pile_a)->next->value && (*pile_a)->value > (*pile_a)->next->next->value && (*pile_a)->value > (*pile_a)->next->next->next->value && (*pile_a)->value > (*pile_a)->next->next->next->next->value)
-	{
-		rotate_a(pile_a);
-	}
-	
-	// while ((*pile_a)->value > (*pile_a)->next->value)
-	// {
-	// 	rotate_a(pile_a);
-	// }
-	// reverse_rotate_a(pile_a);
-	// reverse_rotate_a(pile_a);
-	// swap_a(pile_a);
-	// rotate_a(pile_a);
-	// rotate_a(pile_a);
-	
+    int min;
+    int pos;
+
+    min = search_min(pile_a);
+    pos = found_pos_nbr(pile_a, min);
+    if (pos > 2)
+    {
+        reverse_rotate_a(pile_a);
+        reverse_rotate_a(pile_a);
+    }
+    else
+    {
+        while (pos > 0)
+        {
+            rotate_a(pile_a);
+            pos--;
+        }
+    }
+    push_b(pile_a, pile_b);
+    min = search_min(pile_a);
+    pos = found_pos_nbr(pile_a, min);
+    if (pos > 2)
+        reverse_rotate_a(pile_a);
+    else
+    {
+        while (pos > 0)
+        {
+            rotate_a(pile_a);
+            pos--;
+        }
+    }
+    push_b(pile_a, pile_b);
+    trois(pile_a);
+    push_a(pile_a, pile_b);
+    push_a(pile_a, pile_b);
 }

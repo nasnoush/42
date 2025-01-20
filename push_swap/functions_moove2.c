@@ -6,7 +6,7 @@
 /*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 10:25:54 by nas               #+#    #+#             */
-/*   Updated: 2025/01/19 13:31:23 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/20 19:28:03 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ void	reverse_rotate_a(t_node **pile_a)
 	
 	if (*pile_a == NULL || (*pile_a)->next == NULL)
 		return ;
-	
 	save = *pile_a;
 	cur = *pile_a;
 	while (cur->next != NULL)
@@ -105,6 +104,5 @@ void	reverse_rotate_a(t_node **pile_a)
 	tmp->next = NULL;
 	cur->next = save;
 	*pile_a = cur;
-	
 	ft_printf("rra\n");
 }
