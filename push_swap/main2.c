@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:46:06 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/22 13:22:52 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:15:45 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	handle_single_arg(char *arg, t_node **pile_a)
 	int		size;
 
 	if (arg[0] == '\0')
-	{
-		ft_printf("Error\n");
 		exit(1);
-	}
 	args = split_args(arg, &size);
 	if (!args)
 	{
@@ -30,6 +27,7 @@ void	handle_single_arg(char *arg, t_node **pile_a)
 	}
 	check_all(args, args);
 	stock_pile(size, args, pile_a);
+	transform_to_index(pile_a);
 	free_split(args);
 }
 
