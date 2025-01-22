@@ -6,13 +6,13 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:54 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/21 11:11:11 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:34:13 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_number(char *str)
+int	is_number(char *str)
 {
 	int	i;
 
@@ -63,20 +63,52 @@ void	stock_pile(int argc, char **argv, t_node **head)
 		i++;
 	}
 }
+// int	add_nodes(int argc, char **argv, t_node *head)
+// {
+// 	t_node	*tmp;
+// 	int		i;
 
-t_node	*push(t_node **head, int value)
-{
-	t_node	*new_node;
+// 	tmp = head;
+// 	i = 1;
+// 	while (i < argc)
+// 	{
+// 		if (!is_number(argv[i]))
+// 		{
+// 			ft_printf("Error\n");
+// 			return (0);
+// 		}
+// 		tmp->next = malloc(sizeof(t_node));
+// 		if (tmp->next == NULL)
+// 		{
+// 			ft_printf("Error: Memory allocation failed\n");
+// 			return (0);
+// 		}
+// 		tmp = tmp->next;
+// 		tmp->value = atoi(argv[i]);
+// 		tmp->next = NULL;
+// 		i++;
+// 	}
+// 	return (1);
+// }
 
-	new_node = NULL;
-	new_node = malloc(sizeof(t_node));
-	if (new_node == NULL)
-		return (NULL);
-	new_node->value = value;
-	new_node->next = *head;
-	*head = new_node;
-	return (*head);
-}
+// void	stock_pile(int argc, char **argv, t_node **head)
+// {
+// 	if (argc < 2 || !is_number(argv[1]))
+// 	{
+// 		ft_printf("Error\n");
+// 		return ;
+// 	}
+// 	*head = malloc(sizeof(t_node));
+// 	if (*head == NULL)
+// 	{
+// 		ft_printf("Error: Memory allocation failed\n");
+// 		return ;
+// 	}
+// 	(*head)->value = atoi(argv[1]);
+// 	(*head)->next = NULL;
+// 	if (!add_nodes(argc, argv, *head))
+// 		return ;
+// }
 
 void	swap_a(t_node **pile_a)
 {

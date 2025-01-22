@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:04:21 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/21 11:45:37 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:01:01 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ char	**ft_split(char *str)
 		while (str[i] && (str[i] != ' ' && str[i] != '\t' && str[i] != '\n'))
 			i++;
 		if (i > start)
-		{
-			tab_word[word_index] = allocate_word(str, start, i);
-			word_index++;
-		}
+			tab_word[word_index++] = allocate_word(str, start, i);
 	}
 	tab_word[word_index] = NULL;
 	return (tab_word);
@@ -101,7 +98,7 @@ int	if_is_sort(t_node **pile_a)
 	t_node	*cur;
 
 	if (!pile_a || !*pile_a)
-        return (1);
+		return (1);
 	cur = *pile_a;
 	while (cur != NULL && cur->next != NULL)
 	{

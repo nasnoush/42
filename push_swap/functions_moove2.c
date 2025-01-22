@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/12 10:25:54 by nas               #+#    #+#             */
-/*   Updated: 2025/01/21 11:11:16 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/22 12:00:10 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	push_a(t_node **pile_a, t_node **pile_b)
 	free(tmp);
 	ft_printf("pa\n");
 }
+
 void	push_b(t_node **pile_a, t_node **pile_b)
 {
 	t_node	*tmp;
@@ -74,6 +75,7 @@ void	rotate_b(t_node **pile_b)
 	tmp->next = NULL;
 	ft_printf("rb\n");
 }
+
 void	reverse_rotate_a(t_node **pile_a)
 {
 	t_node	*cur;

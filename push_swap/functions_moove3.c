@@ -3,38 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   functions_moove3.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:30:52 by nas               #+#    #+#             */
-/*   Updated: 2025/01/21 17:14:36 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/22 12:03:57 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	count_node(t_node *pile)
+t_node	*push(t_node **head, int value)
 {
-	int	i;
+	t_node	*new_node;
 
-	i = 0;
-	while (pile != NULL)
-	{
-		pile = pile->next;
-		i++;
-	}
-	return (i);
+	new_node = NULL;
+	new_node = malloc(sizeof(t_node));
+	if (new_node == NULL)
+		return (NULL);
+	new_node->value = value;
+	new_node->next = *head;
+	*head = new_node;
+	return (*head);
 }
 
-void print_pile(t_node **head)
+void	print_pile(t_node **head)
 {
-    t_node *current = *head;
-    
-    while (current != NULL)
-    {
-        ft_printf("%d ", current->value);
-        current = current->next;
-    }
-    ft_printf("\n");
+	t_node	*current;
+
+	current = *head;
+	while (current != NULL)
+	{
+		ft_printf("%d ", current->value);
+		current = current->next;
+	}
+	ft_printf("\n");
 }
 
 void	rrr(t_node **pile_a, t_node **pile_b)
@@ -50,6 +52,7 @@ void	rr(t_node **pile_a, t_node **pile_b)
 	rotate_b(pile_b);
 	ft_printf("rr\n");
 }
+
 void	reverse_rotate_b(t_node **pile_b)
 {
 	t_node	*tmp;

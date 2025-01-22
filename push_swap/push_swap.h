@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 14:09:42 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/22 11:46:41 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:14:36 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ char				**ft_split(char *str);
 int					count_word(char *str);
 int					if_is_sort(t_node **pile_a);
 void	free_split(char **split);
+int	is_number(char *str);
 
 #endif

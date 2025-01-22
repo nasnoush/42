@@ -6,7 +6,7 @@
 #    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/08 13:06:12 by nadahman          #+#    #+#              #
-#    Updated: 2025/01/22 11:47:05 by nadahman         ###   ########.fr        #
+#    Updated: 2025/01/22 13:18:13 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,10 @@ SRCS =	main.c \
 		algo_chunks2.c \
 		utils2.c \
 		index_utils.c \
-		main2.c
+		main2.c \
+		utils3.c
 
-norminette : 
+norminette :
 		norminette $(SRCS)
 	
 all: $(NAME)

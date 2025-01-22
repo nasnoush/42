@@ -6,10 +6,9 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 11:46:06 by nadahman          #+#    #+#             */
-/*   Updated: 2025/01/22 11:46:19 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:22:52 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "push_swap.h"
 
@@ -61,4 +60,3 @@ void	free_all(t_node **pile_a, t_node **pile_b, t_chunks **chunks)
 	free_chunks(chunks);
 	free_pile(pile_b);
 }
-

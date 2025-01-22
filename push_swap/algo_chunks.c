@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_chunks.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:47:13 by nas               #+#    #+#             */
-/*   Updated: 2025/01/21 19:13:07 by nas              ###   ########.fr       */
+/*   Updated: 2025/01/22 13:30:59 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,74 +67,71 @@ void	create_chunks(t_chunks **chunks, int min, int max, int nb_chunks)
 	}
 }
 
-void    calcul_nbr_moove_a(t_node **head, int value)
+void	calcul_nbr_moove_a(t_node **head, int value)
 {
-    int    pos;
-    int    size;
-    int    cout_ra;
-    int    cout_rra;
+	int	pos;
+	int	size;
+	int	cout_ra;
+	int	cout_rra;
 
-    if (!head || !(*head))
-        return ;
-    size = count_int(head);
-    pos = found_pos_nbr(head, value);
-    if (pos == -1)
-        return ;
-    cout_ra = pos;
-    cout_rra = size - pos;
-
-    if (cout_ra <= cout_rra)
-    {
-        while (cout_ra > 0)
-        {
-            rotate_a(head);
-            cout_ra--;
-        }
-    }
-    else
-    {
-        while (cout_rra > 0)
-        {
-            reverse_rotate_a(head);
-            cout_rra--;
-        }
-    }
+	if (!head || !(*head))
+		return ;
+	size = count_int(head);
+	pos = found_pos_nbr(head, value);
+	if (pos == -1)
+		return ;
+	cout_ra = pos;
+	cout_rra = size - pos;
+	if (cout_ra <= cout_rra)
+	{
+		while (cout_ra > 0)
+		{
+			rotate_a(head);
+			cout_ra--;
+		}
+	}
+	else
+	{
+		while (cout_rra > 0)
+		{
+			reverse_rotate_a(head);
+			cout_rra--;
+		}
+	}
 }
 
-void    calcul_nbr_moove_b(t_node **head, int value)
+void	calcul_nbr_moove_b(t_node **head, int value)
 {
-    int    pos;
-    int    size;
-    int    cout_rb;
-    int    cout_rrb;
+	int	pos;
+	int	size;
+	int	cout_rb;
+	int	cout_rrb;
 
-    if (!head || !(*head))
-        return ;
-    size = count_int(head);
-    pos = found_pos_nbr(head, value);
-    if (pos == -1)
-        return ;
-    cout_rb = pos;
-    cout_rrb = size - pos;
-
-    if (cout_rb <= cout_rrb)
-    {
-        while (cout_rb > 0)
-        {
-            rotate_b(head);
-            cout_rb--;
-        }
-    }
-    else
-    {
-        while (cout_rrb > 0)
-        {
-            reverse_rotate_b(head);
-            cout_rrb--;
-        }
-    }
+	if (!head || !(*head))
+		return ;
+	size = count_int(head);
+	pos = found_pos_nbr(head, value);
+	if (pos == -1)
+		return ;
+	cout_rb = pos;
+	cout_rrb = size - pos;
+	if (cout_rb <= cout_rrb)
+	{
+		while (cout_rb > 0)
+		{
+			rotate_b(head);
+			cout_rb--;
+		}
+	}
+	else
+	{
+		while (cout_rrb > 0)
+		{
+			reverse_rotate_b(head);
+			cout_rrb--;
+		}
+	}
 }
-
 
 void	trie_to_pile_b(t_node **pile_a, t_node **pile_b, t_chunks **chunks)
 {
@@ -157,43 +154,5 @@ void	trie_to_pile_b(t_node **pile_a, t_node **pile_b, t_chunks **chunks)
 				cur = cur->next;
 		}
 		nb = nb->next;
-	}
-}
-
-void	trie_chunks(t_node **pile_a, t_node **pile_b, t_chunks **chunks)
-{
-	int	nbr_element;
-	int	min;
-	int	max;
-
-	nbr_element = count_int(pile_a);
-	min = search_min(pile_a);
-	max = search_max(pile_a);
-	if (nbr_element == 1)
-	{
-		return ;
-	}
-	else if (nbr_element == 2)
-	{
-		if ((*pile_a)->value > (*pile_a)->next->value)
-			swap_a(pile_a);
-	}
-	else if (nbr_element == 3)
-		trois(pile_a);
-	else if (nbr_element == 5)
-		cinq(pile_a, pile_b);
-	else if (nbr_element <= 100 && nbr_element > 5)
-	{
-		create_chunks(chunks, min, max, 5);
-		trie_to_pile_b(pile_a, pile_b, chunks);
-		trie_to_pile_a(pile_a, pile_b);
-		verif_trie(pile_a);
-	}
-	else
-	{
-		create_chunks(chunks, min, max, 11);
-		trie_to_pile_b(pile_a, pile_b, chunks);
-		trie_to_pile_a(pile_a, pile_b);
-		verif_trie(pile_a);
 	}
 }
