@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:52:05 by nas               #+#    #+#             */
-/*   Updated: 2025/02/02 10:20:33 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/03 13:12:25 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 typedef struct s_philo
 {
 	int	nbr_philo;
-	int	nbr_forks;
+	int	forks;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
@@ -43,6 +43,7 @@ typedef enum e_etat
 	PENSER,
 	MANGER,
 	DORMIR,
+	MORT,
 }t_etat;
 
 typedef struct s_philosophe
