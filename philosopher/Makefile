@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nas <nas@student.42.fr>                    +#+  +:+       +#+         #
+#    By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 10:52:17 by nas               #+#    #+#              #
-#    Updated: 2025/01/31 11:32:36 by nas              ###   ########.fr        #
+#    Updated: 2025/02/04 12:59:16 by nadahman         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ OBJ  = $(SRCS:.c=.o)
 SRCS =	philo.c \
 		utils.c \
 		main.c \
+		routine.c
 
 all: $(NAME)
 

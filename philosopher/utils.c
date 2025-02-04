@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:04:21 by nas               #+#    #+#             */
-/*   Updated: 2025/02/02 10:05:14 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/04 13:54:07 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	ft_atoi(char *str)
 	return (r * s);
 }
 
-void free_philo(t_philosophe **philosophe)
-{
-    free(*philosophe);
-    *philosophe = NULL;
-}
+// void free_philo(t_philosophe **philosophe)
+// {
+//     free(*philosophe);
+//     *philosophe = NULL;
+// }

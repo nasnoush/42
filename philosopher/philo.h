@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:52:05 by nas               #+#    #+#             */
-/*   Updated: 2025/02/03 13:12:25 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:59:51 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@
 typedef struct s_philo
 {
 	int	nbr_philo;
-	int	forks;
+	pthread_mutex_t	*forks;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nbr_of_times_each_philo_must_eat;
 	pthread_t	*threads;
-	pthread_mutex_t	*mutex;
 	
 	
 }t_philo;
@@ -50,12 +49,20 @@ typedef struct s_philosophe
 {
 	int	id;
 	int	nb_meal;
+	int	forks;
 	t_etat etat;
 	pthread_mutex_t	mutex;
+	t_philo *philo;
 }t_philosophe;
 
 
 int	ft_atoi(char *str);
-void free_philo(t_philosophe **philosophe);
+void free_philo(t_philosophe *philosophe);
+void init_philo(t_philosophe **philosophe, t_philo *philo);
+void	*routine(void *arg);
+void	create_thread(t_philo *philo, t_philosophe *philosophe, pthread_t *threads);
+
+
+
 
 #endif

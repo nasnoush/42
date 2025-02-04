@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:50:22 by nas               #+#    #+#             */
-/*   Updated: 2025/02/03 13:21:04 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:08:37 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,62 +14,38 @@
 
 void init_philo(t_philosophe **philosophe, t_philo *philo)
 {
-    int i;
-
-    *philosophe = malloc(sizeof(t_philosophe) * philo->nbr_philo);
-    if (*philosophe == NULL)
-        return;
+	int i;
 
     i = 0;
+	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->nbr_philo);
+    if (philo->forks == NULL)
+        return;
     while (i < philo->nbr_philo)
     {
         (*philosophe)[i].id = i + 1;
         (*philosophe)[i].nb_meal = 0;
         (*philosophe)[i].etat = PENSER;
+		(*philosophe)[i].forks = i + 1;
+		pthread_mutex_init(&philo->forks[i], NULL);
         i++;
     }
 }
 
-void	init_forks(t_philo *philo)
+void	create_thread(t_philo *philo, t_philosophe *philosophe, pthread_t *threads)
 {
-	int	i;
-
-	i = 0;
-	while (i < philo->nbr_philo)
-	{
-		
-	}
-}
-
-void	*routine(void *arg)
-{
-	t_philosophe	*philosophe;
-	
-	while (1)
-	{
-		if (philosophe->etat == MORT)
-			break ;
-		if (philosophe->etat == PENSER)
-			printf("Philosophe %d pense", (*philosophe).id);
-		if (philosophe->etat == MANGER)
-		{
-			printf("Philosophe %d mange", (*philosophe).id);
-		}
-		if (philosophe->etat == DORMIR)
-			printf("Philosophe %d dors", (*philosophe).id);
-	}
-
-}
-void	create_thread(t_philo *philo)
-{
-	t_philosophe *philosophe;
 	int	i;
 	
 	i = 0;
 	while (i < philo->nbr_philo)
 	{
-		pthread_create();
+		philosophe[i].philo = philo;
+		pthread_create(&threads[i], NULL, routine, &philosophe[i]);
 		i++;
-		    dormir(philo);
+    }
+	i = 0;
+    while (i < philo->nbr_philo)
+    {
+        pthread_join(threads[i], NULL);
+        i++;
     }
 }
