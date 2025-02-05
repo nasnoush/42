@@ -6,31 +6,65 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:38:34 by nadahman          #+#    #+#             */
-/*   Updated: 2025/02/04 14:17:49 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:02:00 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+// void	is_dead(t_philosophe **philosophe)
+// {
+// 	if ()
+// }
 
 void	philo_think(t_philosophe *philosophe)
 {
 	philosophe->etat = PENSER;
-	printf("Philosophe %d pense\n", philosophe->id);
+	pthread_mutex_lock(&philosophe->philo->print_mutex);
+	printf("%d is thinking\n", philosophe->id);
+	pthread_mutex_unlock(&philosophe->philo->print_mutex);
 	usleep (500);
 }
 
 void	philo_eat(t_philosophe *philosophe)
 {
 	philosophe->etat = MANGER;
-	printf("Philosophe %d mange\n", philosophe->id);
+	pthread_mutex_lock(&philosophe->philo->print_mutex);
+	printf("%d is eating\n", philosophe->id);
+	pthread_mutex_unlock(&philosophe->philo->print_mutex);
+	if (philosophe->id % 2 == 0)
+	{
+		pthread_mutex_lock(philosophe->forks_left);
+		pthread_mutex_lock(&philosophe->philo->print_mutex);
+		printf("%d has taken a fork\n", philosophe->id);
+		pthread_mutex_unlock(&philosophe->philo->print_mutex);
+		pthread_mutex_lock(philosophe->forks_right);
+		pthread_mutex_lock(&philosophe->philo->print_mutex);
+		printf("%d has taken a fork\n", philosophe->id);
+		pthread_mutex_unlock(&philosophe->philo->print_mutex);
+	}
+	else
+	{
+		pthread_mutex_lock(philosophe->forks_right);
+		pthread_mutex_lock(&philosophe->philo->print_mutex);
+		printf("%d has taken a fork\n", philosophe->id);
+		pthread_mutex_unlock(&philosophe->philo->print_mutex);
+		pthread_mutex_lock(philosophe->forks_left);
+		pthread_mutex_lock(&philosophe->philo->print_mutex);
+		printf("%d has taken a fork\n", philosophe->id);
+		pthread_mutex_unlock(&philosophe->philo->print_mutex);
+	}
+	pthread_mutex_unlock(philosophe->forks_left);
+	pthread_mutex_unlock(philosophe->forks_right);
 	usleep(philosophe->philo->time_to_eat * 1000);
 }
 
 void	philo_sleep(t_philosophe *philosophe)
 {
 	philosophe->etat = DORMIR;
-	printf("Philosophe %d dors\n", philosophe->id);
+	pthread_mutex_lock(&philosophe->philo->print_mutex);
+	printf("%d is sleeping\n", philosophe->id);
+	pthread_mutex_unlock(&philosophe->philo->print_mutex);
 	usleep (philosophe->philo->time_to_sleep * 1000);
 }
 void	*routine(void *arg)

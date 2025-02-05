@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:52:05 by nas               #+#    #+#             */
-/*   Updated: 2025/02/04 13:59:51 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:27:00 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@
 typedef struct s_philo
 {
 	int	nbr_philo;
-	pthread_mutex_t	*forks;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nbr_of_times_each_philo_must_eat;
 	pthread_t	*threads;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	print_mutex;
+	
 	
 	
 }t_philo;
@@ -43,16 +45,18 @@ typedef enum e_etat
 	MANGER,
 	DORMIR,
 	MORT,
+
 }t_etat;
 
 typedef struct s_philosophe
 {
 	int	id;
 	int	nb_meal;
-	int	forks;
 	t_etat etat;
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	*forks_left;
+	pthread_mutex_t	*forks_right;
 	t_philo *philo;
+	
 }t_philosophe;
 
 

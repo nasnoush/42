@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:04:21 by nas               #+#    #+#             */
-/*   Updated: 2025/02/04 13:54:07 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:41:07 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	ft_atoi(char *str)
 	}
 	return (r * s);
 }
+
+// long	get_time(t_philo *philo)
+// {
+
+// }
 
 // void free_philo(t_philosophe **philosophe)
 // {
