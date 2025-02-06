@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:52:05 by nas               #+#    #+#             */
-/*   Updated: 2025/02/05 13:27:00 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:53:14 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 typedef struct s_philo
 {
 	int	nbr_philo;
+	long long int start_time;
+	long long	int	last_meal_time;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
@@ -34,6 +36,7 @@ typedef struct s_philo
 	pthread_t	*threads;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	time;
 	
 	
 	
@@ -60,11 +63,14 @@ typedef struct s_philosophe
 }t_philosophe;
 
 
-int	ft_atoi(char *str);
-void free_philo(t_philosophe *philosophe);
-void init_philo(t_philosophe **philosophe, t_philo *philo);
-void	*routine(void *arg);
-void	create_thread(t_philo *philo, t_philosophe *philosophe, pthread_t *threads);
+int				ft_atoi(char *str);
+void			free_philo(t_philosophe *philosophe);
+void			init_philo(t_philosophe **philosophe, t_philo *philo);
+void			*routine(void *arg);
+void			create_thread(t_philo *philo, t_philosophe *philosophe, pthread_t *threads);
+long long int 	get_time(t_philo *philo);
+int			is_finish(t_philosophe *philosophe);
+int is_dead(t_philosophe *philosophe);
 
 
 

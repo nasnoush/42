@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:04:21 by nas               #+#    #+#             */
-/*   Updated: 2025/02/05 12:41:07 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:58:06 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,31 @@ int	ft_atoi(char *str)
 	}
 	return (r * s);
 }
+long long int get_time(t_philo *philo)
+{
+	struct timeval	cur;
+	long long int cur_time;
 
-// long	get_time(t_philo *philo)
-// {
+	gettimeofday(&cur, NULL);
+	cur_time = (cur.tv_sec * 1000) + (cur.tv_usec / 1000);
+	
 
-// }
+	return (cur_time - philo->start_time);
+}
+
+int is_dead(t_philosophe *philosophe)
+{
+	long long int cur_time_meal;
+	
+	cur_time_meal = get_time(philosophe->philo);
+	if (cur_time_meal - philosophe->philo->last_meal_time > philosophe->philo->time_to_die)
+	{
+		philosophe->etat = MORT;
+		return (1);
+	}
+	return (0);
+}
+
 
 // void free_philo(t_philosophe **philosophe)
 // {
