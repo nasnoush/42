@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:52:05 by nas               #+#    #+#             */
-/*   Updated: 2025/02/06 13:53:14 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/09 16:03:24 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <pthread.h>
+#include <limits.h>
 
+// Structure principale
 
 typedef struct s_philo
 {
 	int	nbr_philo;
 	long long int start_time;
-	long long	int	last_meal_time;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
@@ -37,11 +38,19 @@ typedef struct s_philo
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	time;
+	pthread_mutex_t	meal_mutex;
+	pthread_mutex_t is_dead_mutex;
+    pthread_mutex_t nb_meal_mutex; 
+	int	is_dead;
+	int meals_count;
+	int philo_dead;
+	struct timeval tmp;
 	
 	
 	
 }t_philo;
 
+// etats des philosophes
 typedef enum e_etat
 {
 	PENSER,
@@ -51,6 +60,8 @@ typedef enum e_etat
 
 }t_etat;
 
+// Pour chaques philosophe
+
 typedef struct s_philosophe
 {
 	int	id;
@@ -58,6 +69,7 @@ typedef struct s_philosophe
 	t_etat etat;
 	pthread_mutex_t	*forks_left;
 	pthread_mutex_t	*forks_right;
+	long long	int	last_meal_time;
 	t_philo *philo;
 	
 }t_philosophe;
@@ -71,6 +83,19 @@ void			create_thread(t_philo *philo, t_philosophe *philosophe, pthread_t *thread
 long long int 	get_time(t_philo *philo);
 int			is_finish(t_philosophe *philosophe);
 int is_dead(t_philosophe *philosophe);
+void destroy_mutex(t_philosophe *philosophe);
+void	philo_eat(t_philosophe *philosophe);
+void	philo_sleep(t_philosophe *philosophe);
+int	check_args(int	argc, char **argv);
+int check_arg_num(char **argv);
+void init_main(char **argv, t_philo *philo, t_philosophe **philosophe, pthread_t **threads);
+void	print_and_lock(t_philosophe *philosophe, char *str);
+void	*check_monitoring(void *arg);
+int take_forks(t_philosophe *philosophe);
+void release_forks(t_philosophe *philosophe);
+int check_death(t_philosophe *philosophe);
+void update_meal_time(t_philosophe *philosophe);
+
 
 
 
