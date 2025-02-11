@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:04:21 by nas               #+#    #+#             */
-/*   Updated: 2025/02/10 11:39:58 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/11 17:15:12 by nas              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ void	print_and_lock(t_philosophe *philosophe, char *str)
 	}
 }
 
-void	free_all(t_philosophe *philosophe)
-{
-	free(philosophe->philo);
-	free(philosophe);
-	free(philosophe->philo->threads);
-}
+// void	free_all(t_philosophe *philosophe)
+// {
+// 	free(philosophe->philo);
+// 	free(philosophe);
+// 	free(philosophe->philo->threads);
+// }
