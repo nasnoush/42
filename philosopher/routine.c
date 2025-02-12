@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:38:34 by nadahman          #+#    #+#             */
-/*   Updated: 2025/02/11 19:20:14 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/12 12:48:39 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,15 @@ void    philo_eat(t_philosophe *philosophe)
     is_dead = philosophe->philo->is_dead;
     pthread_mutex_unlock(&philosophe->philo->is_dead_mutex);
     if (is_dead)
-        return ;
+        return;
+
+    pthread_mutex_lock(&philosophe->philo->meal_mutex);
+    if (get_time(philosophe->philo) - philosophe->last_meal_time > philosophe->philo->time_to_die)
+    {
+        pthread_mutex_unlock(&philosophe->philo->meal_mutex);
+        return;
+    }
+    pthread_mutex_unlock(&philosophe->philo->meal_mutex);
 
     if (philosophe->philo->nbr_philo == 1)
     {
@@ -28,12 +36,11 @@ void    philo_eat(t_philosophe *philosophe)
         print_and_lock(philosophe, "has taken a fork\n");
         usleep(philosophe->philo->time_to_die * 1000);
         pthread_mutex_unlock(philosophe->forks_left);
-        return ;
+        return;
     }
 
     if (philosophe->id % 2 == 0)
     {
-        usleep(100);
         pthread_mutex_lock(philosophe->forks_right);
         print_and_lock(philosophe, "has taken a fork\n");
         pthread_mutex_lock(philosophe->forks_left);
@@ -64,6 +71,14 @@ void    philo_eat(t_philosophe *philosophe)
 
 void    philo_sleep(t_philosophe *philosophe)
 {
+    int is_dead;
+
+    pthread_mutex_lock(&philosophe->philo->is_dead_mutex);
+    is_dead = philosophe->philo->is_dead;
+    pthread_mutex_unlock(&philosophe->philo->is_dead_mutex);
+    if (is_dead)
+        return;
+
     print_and_lock(philosophe, "is sleeping\n");
     usleep(philosophe->philo->time_to_sleep * 1000);
 }
@@ -78,16 +93,17 @@ void    philo_think(t_philosophe *philosophe)
     is_dead = philosophe->philo->is_dead;
     pthread_mutex_unlock(&philosophe->philo->is_dead_mutex);
     if (is_dead)
-        return ;
+        return;
+
     philosophe->etat = PENSER;
     print_and_lock(philosophe, "is thinking\n");
-    usleep((philosophe->philo->time_to_die - (philosophe->philo->time_to_eat 
-        + philosophe->philo->time_to_sleep)) * 500);
+    usleep(1000);
 }
 
 void    *routine(void *arg)
 {
     t_philosophe *philosophe;
+    int is_dead;
 
     philosophe = (t_philosophe *)arg;
     if (!philosophe)
@@ -97,19 +113,16 @@ void    *routine(void *arg)
     philosophe->last_meal_time = get_time(philosophe->philo);
     pthread_mutex_unlock(&philosophe->philo->meal_mutex);
 
-    // Décalage initial pour éviter que tous les philosophes ne commencent en même temps
     if (philosophe->id % 2)
-        usleep(philosophe->philo->time_to_eat * 500);
+        usleep(100);
 
     while (1)
     {
         pthread_mutex_lock(&philosophe->philo->is_dead_mutex);
-        if (philosophe->philo->is_dead)
-        {
-            pthread_mutex_unlock(&philosophe->philo->is_dead_mutex);
-            return (NULL);
-        }
+        is_dead = philosophe->philo->is_dead;
         pthread_mutex_unlock(&philosophe->philo->is_dead_mutex);
+        if (is_dead)
+            return (NULL);
 
         philo_think(philosophe);
         philo_eat(philosophe);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:53:28 by nas               #+#    #+#             */
-/*   Updated: 2025/02/11 19:19:32 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/12 12:47:44 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,11 @@ void *check_monitoring(void *arg)
             {
                 pthread_mutex_lock(&philosophe->philo->nb_meal_mutex);
                 if (philosophe[i].nb_meal >= philosophe->philo->nbr_of_times_each_philo_must_eat)
-                {
                     total_finished++;
-                }
                 pthread_mutex_unlock(&philosophe->philo->nb_meal_mutex);
             }
             i++;
         }
-
         if (philosophe->philo->nbr_of_times_each_philo_must_eat != -1 
             && total_finished == philosophe->philo->nbr_philo)
         {
@@ -65,7 +62,7 @@ void *check_monitoring(void *arg)
             pthread_mutex_unlock(&philosophe->philo->is_dead_mutex);
             return (NULL);
         }
-        usleep(1000);
+        usleep(100);
     }
     return (NULL);
 }

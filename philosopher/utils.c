@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 11:04:21 by nas               #+#    #+#             */
-/*   Updated: 2025/02/11 17:15:12 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/12 13:05:11 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,3 @@ void	print_and_lock(t_philosophe *philosophe, char *str)
 		pthread_mutex_unlock(&philosophe->philo->print_mutex);
 	}
 }
-
-// void	free_all(t_philosophe *philosophe)
-// {
-// 	free(philosophe->philo);
-// 	free(philosophe);
-// 	free(philosophe->philo->threads);
-// }
