@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:38:34 by nadahman          #+#    #+#             */
-/*   Updated: 2025/02/12 12:48:39 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:57:51 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void    philo_eat(t_philosophe *philosophe)
     pthread_mutex_unlock(&philosophe->philo->is_dead_mutex);
     if (is_dead)
         return;
+
+    if (philosophe->id % 2 == 1)
+    usleep(1000);
 
     pthread_mutex_lock(&philosophe->philo->meal_mutex);
     if (get_time(philosophe->philo) - philosophe->last_meal_time > philosophe->philo->time_to_die)
@@ -38,7 +41,6 @@ void    philo_eat(t_philosophe *philosophe)
         pthread_mutex_unlock(philosophe->forks_left);
         return;
     }
-
     if (philosophe->id % 2 == 0)
     {
         pthread_mutex_lock(philosophe->forks_right);
@@ -69,6 +71,7 @@ void    philo_eat(t_philosophe *philosophe)
     pthread_mutex_unlock(philosophe->forks_left);
 }
 
+
 void    philo_sleep(t_philosophe *philosophe)
 {
     int is_dead;
@@ -97,7 +100,6 @@ void    philo_think(t_philosophe *philosophe)
 
     philosophe->etat = PENSER;
     print_and_lock(philosophe, "is thinking\n");
-    usleep(1000);
 }
 
 void    *routine(void *arg)
@@ -114,7 +116,7 @@ void    *routine(void *arg)
     pthread_mutex_unlock(&philosophe->philo->meal_mutex);
 
     if (philosophe->id % 2)
-        usleep(100);
+        usleep(1000);
 
     while (1)
     {
