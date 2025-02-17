@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:53:28 by nas               #+#    #+#             */
-/*   Updated: 2025/02/17 10:10:47 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:24:30 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	check_meals(t_philosophe *philosophe)
 	return (0);
 }
 
+
+
 void	*check_monitoring(void *arg)
 {
 	t_philosophe	*philosophe;
@@ -81,6 +83,8 @@ void	*check_monitoring(void *arg)
 	return (NULL);
 }
 
+
+
 void	*routine(void *arg)
 {
 	t_philosophe	*philosophe;
@@ -93,7 +97,7 @@ void	*routine(void *arg)
 	philosophe->last_meal_time = get_time(philosophe->philo);
 	pthread_mutex_unlock(&philosophe->philo->meal_mutex);
 	if (philosophe->id % 2)
-		usleep(1000);
+		ft_usleep(1, philosophe->philo);
 	while (1)
 	{
 		pthread_mutex_lock(&philosophe->philo->is_dead_mutex);
@@ -107,3 +111,4 @@ void	*routine(void *arg)
 	}
 	return (NULL);
 }
+

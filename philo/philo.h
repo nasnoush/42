@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:52:05 by nas               #+#    #+#             */
-/*   Updated: 2025/02/17 10:07:23 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/17 12:04:35 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,13 @@ typedef struct s_philosophe
 
 }					t_philosophe;
 
+typedef struct s_data
+{
+	t_philo			*philo;
+	t_philosophe	*philosophe;
+	pthread_t		*threads;
+}					t_data;
+
 int					ft_atoi(char *str);
 void				free_philo(t_philosophe *philosophe);
 void				init_philo(t_philosophe **philosophe, t_philo *philo);
@@ -107,5 +114,6 @@ int					check_args(int argc, char **argv);
 int					check_arg_num(char **argv);
 int					init_forks(t_philo *philo);
 int					init_mutexes(t_philo *philo);
+void				ft_usleep(long long wait_time, t_philo *philo);
 
 #endif

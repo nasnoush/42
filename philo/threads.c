@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:15:12 by nas               #+#    #+#             */
-/*   Updated: 2025/02/17 10:08:33 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:23:33 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,10 @@ void	release_forks(t_philosophe *philosophe)
 {
 	pthread_mutex_unlock(philosophe->forks_right);
 	pthread_mutex_unlock(philosophe->forks_left);
+}
+
+void	eat(t_philosophe *philosophe)
+{
+	print_and_lock(philosophe, "is eating\n");
+	usleep(philosophe->philo->time_to_eat * 1000);
 }
