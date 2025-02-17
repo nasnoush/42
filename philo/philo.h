@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:52:05 by nas               #+#    #+#             */
-/*   Updated: 2025/02/16 12:18:10 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/17 10:07:23 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,28 @@ void				init_main(char **argv, t_philo *philo,
 						t_philosophe **philosophe, pthread_t **threads);
 void				print_and_lock(t_philosophe *philosophe, char *str);
 void				*check_monitoring(void *arg);
-void					take_forks(t_philosophe *philosophe);
+void				take_forks(t_philosophe *philosophe);
 void				release_forks(t_philosophe *philosophe);
 int					check_death(t_philosophe *philosophe);
 void				update_meal_time(t_philosophe *philosophe);
-void	free_all(t_philo *philo, t_philosophe *philosophe, pthread_t *threads);
-int	create_philo_threads(t_philo *philo, t_philosophe *philosophe,
-	pthread_t *threads);
-void	create_thread(t_philo *philo, t_philosophe *philosophe,
-	pthread_t *threads);
-void	release_forks(t_philosophe *philosophe);
-void philo_think(t_philosophe *philosophe);
-void philo_eat(t_philosophe *philosophe);
-void philo_sleep(t_philosophe *philosophe);
-void one_philo(t_philosophe *philosophe);
-void eat(t_philosophe *philosophe);
-void update_meal_time(t_philosophe *philosophe);
-int check_meals(t_philosophe *philosophe);
-int check_death(t_philosophe *philosophe);
-int check_args(int argc, char **argv);
-int check_arg_num(char **argv);
-int init_forks(t_philo *philo);
-int init_mutexes(t_philo *philo);
-
+void				free_all(t_philo *philo, t_philosophe *philosophe,
+						pthread_t *threads);
+int					create_philo_threads(t_philo *philo,
+						t_philosophe *philosophe, pthread_t *threads);
+void				create_thread(t_philo *philo, t_philosophe *philosophe,
+						pthread_t *threads);
+void				release_forks(t_philosophe *philosophe);
+void				philo_think(t_philosophe *philosophe);
+void				philo_eat(t_philosophe *philosophe);
+void				philo_sleep(t_philosophe *philosophe);
+void				one_philo(t_philosophe *philosophe);
+void				eat(t_philosophe *philosophe);
+void				update_meal_time(t_philosophe *philosophe);
+int					check_meals(t_philosophe *philosophe);
+int					check_death(t_philosophe *philosophe);
+int					check_args(int argc, char **argv);
+int					check_arg_num(char **argv);
+int					init_forks(t_philo *philo);
+int					init_mutexes(t_philo *philo);
 
 #endif

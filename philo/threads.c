@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 12:15:12 by nas               #+#    #+#             */
-/*   Updated: 2025/02/16 12:16:09 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/17 10:08:33 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 int	create_philo_threads(t_philo *philo, t_philosophe *philosophe,
-	pthread_t *threads)
+		pthread_t *threads)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ int	create_philo_threads(t_philo *philo, t_philosophe *philosophe,
 }
 
 void	create_thread(t_philo *philo, t_philosophe *philosophe,
-	pthread_t *threads)
+		pthread_t *threads)
 {
 	int			i;
 	pthread_t	monitor_thread;
@@ -42,8 +42,8 @@ void	create_thread(t_philo *philo, t_philosophe *philosophe,
 	philo->is_dead = 0;
 	if (create_philo_threads(philo, philosophe, threads))
 		return ;
-	usleep(100);
-	if (pthread_create(&monitor_thread, NULL, check_monitoring, philosophe) != 0)
+	if (pthread_create(&monitor_thread, NULL, check_monitoring,
+			philosophe) != 0)
 	{
 		philo->is_dead = 1;
 		return ;
@@ -54,21 +54,21 @@ void	create_thread(t_philo *philo, t_philosophe *philosophe,
 	pthread_join(monitor_thread, NULL);
 }
 
-void take_forks(t_philosophe *philosophe)
+void	take_forks(t_philosophe *philosophe)
 {
-    if (philosophe->id % 2 == 0)
-    {
-        pthread_mutex_lock(philosophe->forks_right);
-        print_and_lock(philosophe, "has taken a fork\n");
-        pthread_mutex_lock(philosophe->forks_left);
-    }
-    else
-    {
-        pthread_mutex_lock(philosophe->forks_left);
-        print_and_lock(philosophe, "has taken a fork\n");
-        pthread_mutex_lock(philosophe->forks_right);
-    }
-    print_and_lock(philosophe, "has taken a fork\n");
+	if (philosophe->id % 2 == 0)
+	{
+		pthread_mutex_lock(philosophe->forks_right);
+		print_and_lock(philosophe, "has taken a fork\n");
+		pthread_mutex_lock(philosophe->forks_left);
+	}
+	else
+	{
+		pthread_mutex_lock(philosophe->forks_left);
+		print_and_lock(philosophe, "has taken a fork\n");
+		pthread_mutex_lock(philosophe->forks_right);
+	}
+	print_and_lock(philosophe, "has taken a fork\n");
 }
 
 void	release_forks(t_philosophe *philosophe)
@@ -76,5 +76,3 @@ void	release_forks(t_philosophe *philosophe)
 	pthread_mutex_unlock(philosophe->forks_right);
 	pthread_mutex_unlock(philosophe->forks_left);
 }
-
-

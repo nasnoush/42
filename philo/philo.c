@@ -3,60 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nas <nas@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 10:50:22 by nas               #+#    #+#             */
-/*   Updated: 2025/02/16 14:52:35 by nas              ###   ########.fr       */
+/*   Updated: 2025/02/17 10:18:19 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// void	init_philo(t_philosophe **philosophe, t_philo *philo)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	gettimeofday(&philo->tmp, NULL);
-// 	philo->start_time = (philo->tmp.tv_sec * 1000) + (philo->tmp.tv_usec
-// 			/ 1000);
-// 	philo->is_dead = 0;
-// 	philo->forks = malloc(sizeof(pthread_mutex_t) * philo->nbr_philo);
-// 	if (!philo->forks)
-// 		return ;
-// 	if (pthread_mutex_init(&philo->print_mutex, NULL) != 0
-// 		|| pthread_mutex_init(&philo->meal_mutex, NULL) != 0
-// 		|| pthread_mutex_init(&philo->is_dead_mutex, NULL) != 0
-// 		|| pthread_mutex_init(&philo->nb_meal_mutex, NULL) != 0)
-// 	{
-// 		free(philo->forks);
-// 		return ;
-// 	}
-// 	while (i < philo->nbr_philo)
-// 	{
-// 		if (pthread_mutex_init(&philo->forks[i], NULL) != 0)
-// 		{
-// 			while (--i >= 0)
-// 				pthread_mutex_destroy(&philo->forks[i]);
-// 			free(philo->forks);
-// 			return ;
-// 		}
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < philo->nbr_philo)
-// 	{
-// 		(*philosophe)[i].id = i + 1;
-// 		(*philosophe)[i].nb_meal = 0;
-// 		(*philosophe)[i].etat = PENSER;
-// 		(*philosophe)[i].last_meal_time = 0;
-// 		(*philosophe)[i].philo = philo;
-// 		(*philosophe)[i].forks_left = &philo->forks[i];
-// 		(*philosophe)[i].forks_right = &philo->forks[(i + 1)
-// 			% philo->nbr_philo];
-// 		i++;
-// 	}
-// }
 
 int	init_mutexes(t_philo *philo)
 {
@@ -111,13 +65,13 @@ void	init_philosophe_attributes(t_philosophe *philosophe, t_philo *philo)
 void	init_philo(t_philosophe **philosophe, t_philo *philo)
 {
 	gettimeofday(&philo->tmp, NULL);
-	philo->start_time = (philo->tmp.tv_sec * 1000) + (philo->tmp.tv_usec / 1000);
+	philo->start_time = (philo->tmp.tv_sec * 1000) + (philo->tmp.tv_usec
+			/ 1000);
 	philo->is_dead = 0;
 	if (init_forks(philo) || init_mutexes(philo))
 		return ;
 	init_philosophe_attributes(*philosophe, philo);
 }
-
 
 // void	create_thread(t_philo *philo, t_philosophe *philosophe,
 // 		pthread_t *threads)
@@ -154,6 +108,3 @@ void	init_philo(t_philosophe **philosophe, t_philo *philo)
 // 	}
 // 	pthread_join(monitor_thread, NULL);
 // }
-
-
-
