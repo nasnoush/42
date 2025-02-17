@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:38:34 by nadahman          #+#    #+#             */
-/*   Updated: 2025/02/17 13:21:09 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:28:08 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	check_philo_state(t_philosophe *philosophe)
 
 void	philo_eat(t_philosophe *philosophe)
 {
-    int	is_dead;
+	int	is_dead;
 
 	pthread_mutex_lock(&philosophe->philo->is_dead_mutex);
 	is_dead = philosophe->philo->is_dead;

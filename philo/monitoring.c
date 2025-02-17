@@ -6,7 +6,7 @@
 /*   By: nadahman <nadahman@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 15:53:28 by nas               #+#    #+#             */
-/*   Updated: 2025/02/17 13:24:30 by nadahman         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:28:21 by nadahman         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ int	check_meals(t_philosophe *philosophe)
 	return (0);
 }
 
-
-
 void	*check_monitoring(void *arg)
 {
 	t_philosophe	*philosophe;
@@ -82,8 +80,6 @@ void	*check_monitoring(void *arg)
 	}
 	return (NULL);
 }
-
-
 
 void	*routine(void *arg)
 {
@@ -111,4 +107,3 @@ void	*routine(void *arg)
 	}
 	return (NULL);
 }
-
